@@ -1,0 +1,34 @@
+﻿#include <stdio.h>
+
+int n[10];
+
+for(int i = 0; i < 10; i++)
+{
+    n[i] = rand();    // Preenche com aleatórios no intervalo 0 ~ 32767
+    cout << " " << n[i];
+}
+
+/*
+   Para alterar os números que são gerados em cada execução, é necessário inicializar a semente geradora do nºs aleatórios com valores diferentes.
+   A semente geradora pode ser modificada pela função srand("valor").
+   Com o intuito de ter sementes diferentes a cada execução, utiliza-se a função time(NULL) presente na biblioteca time.h.
+
+   Exemplo:
+
+   srand(time(NULL));
+   int n[10];
+   for(int i = 0; i < 10; i++)
+   {
+    n[i] = rand();
+    cout << " " << n[i];
+   }
+
+
+   Limitar geração dos números aleatórios:
+   
+   // n = Limite Inferior + rand() % (Limite Superior + 1 - Limite Inferior);
+
+   n[i] = rand() % 10;   // Gera valores de 0 à 9
+   n[i] = 5 + rand() % 10  // Gera números de 5 à 9
+   n[i] = -5 + rand() % 11   // Gera números de -5 à 5
+*/
