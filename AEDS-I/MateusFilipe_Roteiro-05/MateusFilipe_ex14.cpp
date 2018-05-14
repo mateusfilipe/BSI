@@ -38,7 +38,7 @@ int main()
             }
          }
     }
-    for(int i = 0 , j = TAM ; i < TAM ; i++ , j--){
+    for(int i = 0 , j = TAM-1 ; i < TAM ; i++ , j--){
         vInvC[i]=vCres[j];
     }
 

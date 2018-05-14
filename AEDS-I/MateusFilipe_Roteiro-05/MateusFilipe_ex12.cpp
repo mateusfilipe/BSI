@@ -38,7 +38,8 @@ int main()
         cout<<"Preencha o vetor B na posição "<<i<<" : "<<endl;
         cin>>b[i];
     }
-    for()
+    for(int i = 0 ; i <= NA)
+
     cout<<"C[ ";
     for(int i = 0 ; i < NA+NB ; i++){
         cout<<c[i]<<" ";
