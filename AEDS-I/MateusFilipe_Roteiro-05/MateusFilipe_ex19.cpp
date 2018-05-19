@@ -1,7 +1,7 @@
  //Mateus Filipe De Lima Souza - 1º Período - BSI
 /*
     Exemplos de teste:
-    Entrada: ;
+    Entrada: - ;
     Saída: ;
 
 */
