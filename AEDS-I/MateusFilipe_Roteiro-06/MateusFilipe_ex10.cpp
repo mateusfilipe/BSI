@@ -45,7 +45,7 @@ int main()
     for(int i = 0 ; i < ntrajeto ; i++){
         cin>>vetor[i];
     }
-    for(int i = 0 ; i < ntrajeto ; i++){
+    for(int i = 0 ; i < ntrajeto-1 ; i++){
         preco+=matriz[vetor[i]][vetor[i+1]];
     }
     cout<<"O custo de transpote dessa rota é: "<<preco<<endl;
