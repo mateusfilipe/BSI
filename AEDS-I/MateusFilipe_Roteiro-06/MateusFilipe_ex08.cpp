@@ -32,7 +32,7 @@ int main()
     setlocale(LC_ALL , "Portuguese");
     int n;
     int mat[100][100];
-    int teste=0;
+    int testeLinha=0, testeColuna=0;
     cout<<"Digite o tamanho da matriz: ";
     cin>>n;
     cout<<"Preencha a matriz: "<<endl;
@@ -42,20 +42,41 @@ int main()
         }
     }
     for(int i = 0 ; i < n ; i++){
-        teste=0;
         for(int j = 0 ; j < n ; j++){
             if(mat[i][j]!=0 && mat[i][j]!=1){
-                cout<<"Não é permutação!"<<endl;
+                cout<<"Matriz inválida!"<<endl;
                 return 0;
-            }
-            if(mat[i][j]==1){
-                teste++;
             }
         }
     }
-    if(teste==1){
-        cout<<"É uma matriz permutação!"<<endl;
-    }else{
+    for(int i = 0 ; i < n ; i++){
+        testeLinha=0;
+        for(int j = 0 ; j < n ; j++){
+            if(mat[i][j]==1){
+                testeLinha++;
+                if(testeLinha>1)
+                {
+                    break;
+                }
+            }
+        }
+    }
+    for(int j = 0 ; j < n ; j++){
+        testeColuna=0;
+        for(int i = 0 ; i < n ; i++){
+            if(mat[i][j]==1){
+                testeColuna++;
+                if(testeLinha>1)
+                {
+                    break;
+                }
+            }
+        }
+    }
+    if(testeLinha == 1 and testeColuna ==1){
+        cout<<"É uma permutação!"<<endl;
+    }
+    else{
         cout<<"Não é permutação!"<<endl;
     }
     system("pause");
