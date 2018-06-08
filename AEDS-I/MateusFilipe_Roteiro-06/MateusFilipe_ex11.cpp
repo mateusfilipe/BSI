@@ -31,6 +31,7 @@
 #include <math.h>
 #include <windows.h>
 #include <stdio.h>
+#include <iomanip>
 
 //Vetor:
 
@@ -49,6 +50,7 @@ int main()
     //DECLARAÇÃO DE VARIÁVEIS{
         int n, L[L][C], k, saem=0, nEstradas[100], chegam=0;
         int l = 0, maior = -1000, isolados[100], maiorC, isol[100];
+        int m, rota[100], pRota=0;
     //}
     //===================================================================================================//
     //PREENCHENDO A MATRIZ DAS ESTRADAS DE "L[][]"{
@@ -92,6 +94,7 @@ int main()
         cout<<endl;
         cout<<"Da cidade "<<k<<" saem "<<saem<<" estradas(contando sua própria estrada)."<<endl;
         cout<<"Na cidade "<<k<<" chegam "<<chegam<<" estradas(contando sua própria estrada)."<<endl;
+        cout<<endl;
     //}
     //==================================================================================================//
     //DESCOBRINDO QUAL CIDADE EM QUE SE CHEGAM MAIS ESTRADAS{
@@ -113,7 +116,7 @@ int main()
         }
         cout<<endl;
         cout<<"A cidade "<<maiorC<<" possui o maior número de estradas chegando ("<<maior<<" estradas)."<<endl;
-
+        cout<<endl;
     //}
     //====================================================================================================//
     //DESCOBRINDO A CIDADE ISOLADA{
@@ -137,6 +140,28 @@ int main()
         }
 
     //}
+    //====================================================================================================//
+    //VERIFICANDO SE É POSSIVEL A ROTA SEGUNDO O VETOR ROTA[]{
+        cout<<endl;
+        cout<<"Digite por quantas cidades a rota será feita: "<<endl;
+        cin>>m;
+        cout<<"Agora, digite a rota: "<<endl;
+        for(int i = 0 ; i < m ; i++){
+            cin>>rota[i];
+        }
+        for(int i = 0 ; i < m ; i++){
+            if(L[rota[i]][rota[i+1]]==1){
+                    pRota++;
+//                  Verificando o comportamentode pRota
+//                  cout<<"prota: "<<pRota<<endl;
+            }
+        }
+        if(pRota==m){
+            cout<<"Rota possível."<<endl;
+        }else{
+            cout<<"Rota impossível."<<endl;
+        }
+
     //====================================================================================================//
     system("pause");
     return 0;
