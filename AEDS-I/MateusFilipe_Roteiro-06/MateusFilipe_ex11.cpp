@@ -22,6 +22,12 @@
         A cidade 1 não está isolada.
         A cidade 2 não está isolada.
         A cidade 3 não está isolada.
+
+        Digite por quantas cidades a rota será feita:
+        5
+        Agora, digite a rota:
+        2 3 2 1 0
+        Rota impossível.
 	}
 
 
