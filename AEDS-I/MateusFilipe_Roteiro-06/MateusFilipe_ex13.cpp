@@ -56,7 +56,7 @@ int main()
                 nCaracteresNome+=strlen(nomeApelido[i][j].c_str());
             }
         }
-
+        cout<<nomeApelido[0][0]<<" '"<<nomeApelido[0][2]<<"' "<<nomeApelido[0][1]<<endl;
         cout<<"O nome tem: "<<nCaracteresNome<<" caracteres."<<endl;
     cout << setw(70) << setfill('=');
     cout<<"\n";
