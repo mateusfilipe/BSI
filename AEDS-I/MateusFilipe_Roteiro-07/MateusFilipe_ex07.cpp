@@ -1,7 +1,11 @@
  //Mateus Filipe De Lima Souza - 1º Período - BSI
 /*
     Exemplo de Teste{
-
+        Digite N e P:
+        5
+        2
+        Arranjo: 20
+        Número de combinações: 10
     }
 */
 #include <iostream>
@@ -23,9 +27,7 @@ const int C = 3;
 
 using namespace std;
 
-float nFat(float n);
-float pFat(float p);
-float npFat(float p, float n);
+float fat(float a);
 
 int main()
 {
@@ -33,12 +35,11 @@ int main()
     float n, p, a, c, fatorialN, fatorialP, fatorialNP;
     cout<<"Digite N e P:"<<endl;
     cin>>n>>p;
-    fatorialN=nFat(n);
-    fatorialP=pFat(p);
-    fatorialNP=npFat(p,n);
+    fatorialN=fat(n);
+    fatorialP=fat(p);
+    fatorialNP=fat(n-p);
     a=fatorialN/fatorialNP;
     c=fatorialN/(fatorialP*fatorialNP);
-
 
     cout<<"Arranjo: "<<a<<endl;
     cout<<"Número de combinações: "<<c<<endl;
@@ -46,24 +47,12 @@ int main()
     system("PAUSE");
     return 0;
 }
-float nFat(float n){
-    float nfato=1;
-    for(int i = n ; i > 0 ; i--){
-        nfato*=i;
+float fat(float a){
+    float fato=1;
+    if(a == 1 || a==0){
+        return 1;
+    }else{
+        return a*fat(a-1);
     }
-    return nfato;
-}
-float pFat(float p){
-    float pfato=1;
-    for(int i = p ; i > 0 ; i--){
-        pfato*=i;
-    }
-    return pfato;
-}
-float npFat(float p, float n){
-    float npfato=1;
-    for(int i = n-p; i > 0 ; i--){
-        npfato*=i;
-    }
-    return npfato;
+
 }
