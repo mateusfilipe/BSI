@@ -1,7 +1,9 @@
  //Mateus Filipe De Lima Souza - 1º Período - BSI
 /*
     Exemplo de Teste{
+        7
 
+        111
     }
 */
 #include <iostream>
@@ -23,7 +25,12 @@ const int C = 3;
 
 using namespace std;
 
-int dec2bin(int n);
+void dec2bin(int n){
+    if(n/2!=0){
+        dec2bin(n/2);
+    }
+    cout<<n%2;
+}
 
 int main()
 {
@@ -31,9 +38,7 @@ int main()
     int n;
     cin>>n;
     dec2bin(n);
+    cout<<endl;
     system("PAUSE");
     return 0;
-}
-int dec2bin(int n){
-
 }
