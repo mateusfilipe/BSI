@@ -38,11 +38,12 @@ using namespace std;
 void preencheVetor(float vetor[100], float n);
 void imprimeVetor(float vetor[100], float n);
 void intercalaVetor(float vetorA[100], float vetorB[100], float vetorC[100], float nm);
+void semRepeticao(float vetorA[100], float vetorB[100], float vetorC[100], float nm);
 
 int main()
 {
     setlocale(LC_ALL , "Portuguese");
-    float vetorA[100], vetorB[100], vetorC[100], n, m;
+    float vetorA[100], vetorB[100], vetorC[100], vetorC1[100], n, m;
 
     cout<<"A(n): "<<endl;
     cin>>n;
@@ -57,7 +58,10 @@ int main()
     imprimeVetor(vetorB, m);
     intercalaVetor(vetorA, vetorB, vetorC, nm);
     cout<<"C: ";
+    semRepeticao(vetorA, vetorB, vetorC1, nm);
     imprimeVetor(vetorC, nm);
+    cout<<"C1: ";
+    imprimeVetor(vetorC1, nm);
 
     system("PAUSE");
     return 0;
@@ -86,6 +90,15 @@ void intercalaVetor(float vetorA[100], float vetorB[100], float vetorC[100], flo
         if(k%2!=0){
             vetorC[k]=vetorB[b];
             b++;
+        }
+    }
+}
+void semRepeticao(float vetorA[100], float vetorB[100], float vetorC1[100], float nm){
+    for(int i = 0; i < nm ; i++){
+        if(vetorA[i]!=vetorB[i]){
+            vetorC1[i]=vetorA[i];
+        }else{
+            vetorC1[i]=0;
         }
     }
 }
