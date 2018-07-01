@@ -49,6 +49,7 @@ int main()
     cin>>n;
     cout<<"B(m): "<<endl;
     cin>>m;
+
     float nm = n+m;
     preencheVetor(vetorA, n);
     preencheVetor(vetorB, m);
@@ -95,10 +96,9 @@ void intercalaVetor(float vetorA[100], float vetorB[100], float vetorC[100], flo
 }
 void semRepeticao(float vetorA[100], float vetorB[100], float vetorC1[100], float nm){
     for(int i = 0; i < nm ; i++){
-        if(vetorA[i]!=vetorB[i]){
+        if(vetorA[i] != vetorB[i])
             vetorC1[i]=vetorA[i];
-        }else{
-            vetorC1[i]=0;
-        }
+        if(vetorB[i]!= vetorA[i])
+            vetorC1[i]=vetorB[i];
     }
 }

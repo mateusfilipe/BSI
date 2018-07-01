@@ -29,7 +29,7 @@ float pot(float a, float b);
 int main()
 {
     setlocale(LC_ALL , "Portuguese");
-    float x, radx=0, j=0, cosenox=0, cosenox1=0;
+    float x, radx=0, j=0, cosenox=0;
 
     cin>>x;
     convRad(x, radx);
