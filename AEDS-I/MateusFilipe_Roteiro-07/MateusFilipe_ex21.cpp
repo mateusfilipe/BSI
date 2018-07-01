@@ -1,7 +1,10 @@
  //Mateus Filipe De Lima Souza - 1º Período - BSI
 /*
     Exemplo de Teste{
+        3
+        6
 
+        509
     }
 */
 #include <iostream>
