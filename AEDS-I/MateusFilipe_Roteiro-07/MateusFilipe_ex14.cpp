@@ -40,12 +40,14 @@ void comuns(int A[TAM], int B[TAM], int C[TAM], int nA, int nB, int &nC);
 
 void distintos(int A[TAM], int B[TAM], int C[TAM], int nA, int nB, int &nC);
 
+void letraF(int A[TAM], int B[TAM],int nA, int nB);
+
 
 
 int main()
 {
     setlocale(LC_ALL , "Portuguese");
-    int A[TAM], B[TAM], C[TAM], nA, nB, nC=0, D[TAM], nD=0, sR[TAM];
+    int A[TAM], B[TAM], C[TAM], nA, nB, nC=0, D[TAM], nD=0, sR[TAM], sRc=0 ;
 
     cout<<"A(n): "<<endl;
     cin>>nA;
@@ -65,11 +67,11 @@ int main()
     comuns(A, B, D, nA, nB, nD);
     cout<<"Comuns: ";
     imprimeVetor(D, nD);
+    distintos(A,B,sR,nA,nB,sRc);
+    cout<<"Distintos: ";
+    imprimeVetor(sR,sRc);
 
-    distintos(A, B, sR, nA, nB, nD);
-    cout<<"Sem Repetir: ";
-    imprimeVetor(sR, nD);
-
+    letraF(A,B,nA,nB);
     system("PAUSE");
     return 0;
 }
@@ -113,17 +115,39 @@ void comuns(int A[TAM], int B[TAM], int D[TAM], int nA, int nB, int &nD){
         }
     }
 }
-void distintos(int A[TAM], int B[TAM], int D[TAM], int nA, int nB, int &nD){
+void distintos(int A[TAM], int B[TAM], int sR[TAM], int nA, int nB, int &sRc){
     for(int i = 0 ; i < nA ; i++){
-        for(int j = 0 ; j < nB; j++){
-            if(A[i]!=B[i]){
-                if(nD==0){
-                    D[nD]=A[i];
-                    nD++;
-                }else{
-
-                }
+        sR[i]=A[i];
+        sRc++;
+    }
+    for(int i = 0 ; i < nB ; i++){
+        bool achou1=false;
+        for(int j = 0 ; j < nA ; j++){
+            if(B[i]==sR[i]){
+                achou1 = true;
             }
         }
+        if(achou1==false){
+            sR[i]=B[i];
+            sRc++;
+        }
     }
+    cout<<endl;
+}
+void letraF(int A[TAM], int B[TAM], int nA, int nB){
+    int fC[100], fD[100], fnC, fnD, aUb[100], cUd[100], fnAB=0, fnCD=0, f[100], nF = 0;
+    cout<<"Digite o tamanho de C: "<<endl;
+    cin>>fnC;
+    cout<<"Agora preencha C: "<<endl;
+    preencheVetor(fC, fnC);
+    cout<<"Digite o tamanho de D: "<<endl;
+    cin>>fnD;
+    cout<<"Agora preencha D: "<<endl;
+    preencheVetor(fD, fnD);
+
+    distintos(A,B,aUb,nA,nB,fnAB);
+    distintos(fC,fD,cUd,fnC,fnD,fnCD);
+    comuns(aUb,cUd,f,fnAB,fnCD, nF);
+    cout<<"(AUB)interceção(CUD):"<<endl;
+    imprimeVetor(f, nF);
 }
