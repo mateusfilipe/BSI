@@ -20,20 +20,28 @@ const int TAM = 5;
 
 using namespace std;
 
+void dmenor(float v[TAM]);
+
 int main()
 {
     setlocale(LC_ALL , "Portuguese");
-    float v[TAM], menor = 1000;
+    float v[TAM];
     cout<<"Preencha o vetor de tamanho 5: "<<endl;
     for(int i = 0 ; i < TAM ; i++){
         cin>>v[i];
+    }
+
+    dmenor(v);
+
+    system("PAUSE");
+    return 0;
+}
+void dmenor(float v[TAM]){
+    float menor = 9999;
+    for(int i = 0 ; i < TAM ; i++){
         if(v[i]<menor){
             menor = v[i];
         }
     }
     cout<<"Menor: "<<menor<<endl;
-
-    system("PAUSE");
-    return 0;
 }
-
