@@ -46,11 +46,14 @@ int main()
     return 0;
 }
 void salvarquivo(int &np, pessoas vet[]){
+        ofstream fout("Pessoas.txt");
+
     int i = 0;
     while(i != np){
-        fout<<vet[i].cod;
-        fout<<vet[i].base;
-        fout<<vet[i].nome;
+        fout<<vet[i].cod<<",  ";
+        fout<<vet[i].base<<",  ";
+        fout<<vet[i].nome<<",  ";
+        fout<<endl;
         i++;
     }
 }
