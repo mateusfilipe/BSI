@@ -55,10 +55,13 @@ void s1(int np, string vet0[]){
 void s2(int np, string vet0[]){
     ifstream arq("Pessoas.txt");
     string div = ",";
+    string codes[4];
 
     if(arq.is_open()){
         for(int i = 0 ; i < np+1 ; i++){
-
+            cout<<"s2: "<<vet0[i][0]<<endl;
+            codes[i] = vet0[i][0];
+            cout<<"s2 codes: "<<codes[i]<<endl;
         }
     }else{
         cout<<"Arquivo Inválido!"<<endl;
