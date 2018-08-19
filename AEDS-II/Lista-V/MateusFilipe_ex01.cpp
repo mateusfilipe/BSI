@@ -1,60 +1,66 @@
 //Mateus Filipe De Lima Souza - 2º Período - BSI
-
 #include <iostream>
 #include <locale.h>
-#include <math.h>
-#include <windows.h>
-#include <stdio.h>
-#include <iomanip>
-#include <string>
 #include <fstream>
+#include <windows.h>
+#include <string>
+#include <stdio.h>
+#include <cstring>
 
 using namespace std;
-
-const int TAM = 80;
 
 struct pessoas{
     int cod;
     float base;
     string nome;
 };
-
-void preenche(int &np, pessoas vet[]){
-    cout<<"Digite o número de pessoas: "<<endl;
-    cin>>np;
-    for(int i = 0 ; i < np ; i++){
-        cout<<"Digite o código, base e nome da "<<i+1<<"º pessoa:"<<endl;
-        cin>>vet[i].cod;
-        cin>>vet[i].base;
-        cin>>vet[i].nome;
-
-    }
-}
-void salvarquivo(int &np, pessoas vet[]);
+void npessoas(int &np, string vet0[]);
+void s1(int np, string vet0[]);
+void s2(int np, string vet0[]);
 
 int main()
 {
     setlocale(LC_ALL , "Portuguese");
-    ofstream fout("Pessoas.txt");
     int np;
-    pessoas vet[TAM];
+    string vet0[4];
+    ifstream arq("Pessoas.txt");
+    npessoas(np,vet0);
+    s1(np,vet0);
+    s2(np,vet0);
 
-    preenche(np,vet);
-    salvarquivo(np,vet);
-
+    //cout<<np<<endl;
     system("PAUSE");
     return 0;
 }
-void salvarquivo(int &np, pessoas vet[]){
-        ofstream fout("Pessoas.txt");
-
-    int i = 0;
-    while(i != np){
-        fout<<vet[i].cod<<",  ";
-        fout<<vet[i].base<<",  ";
-        fout<<vet[i].nome<<",  ";
-        fout<<endl;
-        i++;
+void npessoas(int &np, string vet0[]){
+    ifstream arq("Pessoas.txt");
+    if(arq.is_open()){
+        getline(arq,vet0[0]);
+        np = atoi(vet0[0].c_str());
+    }else{
+        cout<<"Arquivo Inválido!"<<endl;
     }
 }
+void s1(int np, string vet0[]){
+    ifstream arq("Pessoas.txt");
+    if(arq.is_open()){
+        for(int i = 0 ; i < np+1 ; i++){
+            getline(arq,vet0[i]);
+            //cout<<"s1: "<<vet0[i]<<endl;
+        }
+    }else{
+        cout<<"Arquivo Inválido!"<<endl;
+    }
+}
+void s2(int np, string vet0[]){
+    ifstream arq("Pessoas.txt");
+    string div = ",";
 
+    if(arq.is_open()){
+        for(int i = 0 ; i < np+1 ; i++){
+
+        }
+    }else{
+        cout<<"Arquivo Inválido!"<<endl;
+    }
+}
