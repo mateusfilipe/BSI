@@ -15,20 +15,22 @@ struct pessoas{
     string nome;
 };
 void npessoas(int &np, string vet0[]);
-void s1(int np, string vet0[]);
-void s2(int np, string vet0[]);
+void slinhas(int np, string vet0[]);
 
 int main()
 {
     setlocale(LC_ALL , "Portuguese");
     int np;
-    string vet0[4];
+    string vet0[100];
     ifstream arq("Pessoas.txt");
     npessoas(np,vet0);
-    s1(np,vet0);
+    slinhas(np,vet0);
     s2(np,vet0);
 
-    //cout<<np<<endl;
+
+    char* point;
+    point = strtok(vet0, ",");
+
     system("PAUSE");
     return 0;
 }
@@ -37,31 +39,35 @@ void npessoas(int &np, string vet0[]){
     if(arq.is_open()){
         getline(arq,vet0[0]);
         np = atoi(vet0[0].c_str());
+        //cout<<"np: "<<np<<endl;
     }else{
         cout<<"Arquivo Inválido!"<<endl;
     }
 }
-void s1(int np, string vet0[]){
+void slinhas(int np, string vet0[]){
     ifstream arq("Pessoas.txt");
     if(arq.is_open()){
         for(int i = 0 ; i < np+1 ; i++){
             getline(arq,vet0[i]);
-            //cout<<"s1: "<<vet0[i]<<endl;
+            //cout<<"slinhas: "<<vet0[i]<<endl;
         }
     }else{
         cout<<"Arquivo Inválido!"<<endl;
     }
 }
+//Pega códigos de cada linha;
 void s2(int np, string vet0[]){
     ifstream arq("Pessoas.txt");
     string div = ",";
-    string codes[4];
+    string temp[4];
+    int codes[4];
 
     if(arq.is_open()){
         for(int i = 0 ; i < np+1 ; i++){
             cout<<"s2: "<<vet0[i][0]<<endl;
-            codes[i] = vet0[i][0];
-            cout<<"s2 codes: "<<codes[i]<<endl;
+            temp[i] = vet0[i][0];
+            codes[i] = atoi(vet0[0].c_str());
+
         }
     }else{
         cout<<"Arquivo Inválido!"<<endl;
