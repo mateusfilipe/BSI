@@ -6,7 +6,6 @@ usual feito em Python.'''
 
 def ordenar(vetor):
     auxiliar = 0
-    cont = 0
     troca = False
     for i in range(6):
         troca = False
