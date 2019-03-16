@@ -3,7 +3,6 @@
 #include <locale.h>
 // #include <random>
 #include <stdlib.h>
-#define MAX 6
 
 using namespace std;
 
@@ -44,6 +43,21 @@ void ordenar(int *vetor, int inicio, int fim, int passos)
     }else{
         ordenar(vetor, inicio, fim, passos);
     }
+    int aux;
+    bool troca = true;
+    for(int i = 0 ; i < (fim) && troca ; i++){
+        troca = false;
+        for(int j = 1 ; j < (fim-i) ; j++){
+            //Verificando os valores e fazendo a troca;
+            if(vetor[j-1]>vetor[j]){
+                aux=vetor[j];
+                vetor[j]=vetor[j-1];
+                vetor[j-1]=aux;
+                troca = true;
+            }
+        }
+        if(!troca)break; //Caso n�o tenha necessidade de troca ele quebra e melhora seu custo;
+    }
 }
 
 int main()
@@ -78,7 +92,7 @@ int main()
     cout << "Ordenando... " << endl;
 
     int passos = 0;
-//    ordenar(vetor, 0, qtde-1, passos);
+    ordenar(vetor, 0, qtde-1, passos);
 
     cout << passos << " passos." << endl << endl;
 
