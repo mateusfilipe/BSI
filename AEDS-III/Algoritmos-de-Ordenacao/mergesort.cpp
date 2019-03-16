@@ -1,11 +1,13 @@
 //Mateus Filipe de Lima Souza - BSI 2018
 #include <iostream>
 #include <locale.h>
+// #include <random>
+#include <stdlib.h>
 #define MAX 6
 
 using namespace std;
 
-//1-Versão => Sequência: 5 2 4 6 1 3 -> Passos:45
+//1*Versão => Sequência: 5 2 4 6 1 3 -> Passos:45
 
 void combinar(int *vetor, int inicio, int metade, int fim)
 {
@@ -60,6 +62,7 @@ int main()
 
     for (int i = 0; i < qtde; i++)
     {
+          vetor[i] = rand()%100;
 //        vetor[i] = distribuicao(motor);
     }
 
