@@ -33,7 +33,7 @@ void ordenar(int *vetor, int inicio, int fim, int passos)
     //5. resolver a segunda metade usando o mesmo algoritmo
     //6. combinar as subsoluções na solução final
 
-    if(inicio == fim){
+    if(inicio != fim){
         int metade;
         metade = (fim-inicio)/2;
 
@@ -41,16 +41,18 @@ void ordenar(int *vetor, int inicio, int fim, int passos)
         ordenar(vetor, metade+1, fim, passos);
 
         combinar(vetor, inicio, metade, fim);
+    }else{
+        ordenar(vetor, inicio, fim, passos);
     }
 }
 
 int main()
 {
+    setlocale(LC_ALL,"Portuguese");
     int qtde;
-
     cout << "Programa de Teste de Ordenação" << endl
          << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl
-         << "Quantos numeros aleatorios devo gerar? : ";
+         << "Quantos números aleatorios devo gerar? : ";
     cin >> qtde;
 
     int *vetor = new int[qtde];
@@ -68,7 +70,7 @@ int main()
 
     cout << " Pronto!" << endl;
 
-    cout << endl << "Números gerados: [";
+    cout << endl << "Números gerados: [ ";
     for (int i = 0; i < qtde; i++)
         cout << vetor[i] << " ";
     cout << "]" << endl;
@@ -76,11 +78,11 @@ int main()
     cout << "Ordenando... " << endl;
 
     int passos = 0;
-    ordenar(vetor, 0, qtde-1, passos);
+//    ordenar(vetor, 0, qtde-1, passos);
 
     cout << passos << " passos." << endl << endl;
 
-    cout << "Vetor final" << endl << "[";
+    cout << "Vetor final" << endl << "[ ";
     for (int i = 0; i < qtde; i++)
         cout << vetor[i] << " ";
     cout << "]" << endl;
