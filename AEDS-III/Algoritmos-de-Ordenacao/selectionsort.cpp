@@ -7,12 +7,12 @@ using namespace std;
 
 //=> Sequency:5 2 4 6 1 3 -> Steps:26
 
-//Função responsável por ordenar o vetor:
+//Funï¿½ï¿½o responsï¿½vel por ordenar o vetor:
 void ordenar(float vetor[MAX])
 {
     float aux, cont= 0;//(aux)iliar para facilitar a troca dos valores;
-                      //(cont)ador que ajudará a ver melhor o número de passos;
-    int menor;       //Variável para armazenar a posição do menor valor do vetor;
+                      //(cont)ador que ajudarï¿½ a ver melhor o nï¿½mero de passos;
+    int menor;       //Variï¿½vel para armazenar a posiï¿½ï¿½o do menor valor do vetor;
 
     for(int i = 0 ; i < MAX ; i ++)
     {
@@ -21,7 +21,7 @@ void ordenar(float vetor[MAX])
         for(int j = i+1 ; j < MAX ; j++)
         {
             cont++;
-            //Verificando a posição do menor valor;
+            //Verificando a posiï¿½ï¿½o do menor valor;
             if(vetor[j] < vetor[menor])
             {
                 cont++;
@@ -34,7 +34,7 @@ void ordenar(float vetor[MAX])
         vetor[menor] = vetor[i];
         vetor[i] = aux;
     }
-    //Imprimindo o número de passos feitos pelo código;
+    //Imprimindo o nï¿½mero de passos feitos pelo cï¿½digo;
     cout<<cont<<" passos realizados.\n"<<endl;
     return;
 }
@@ -42,15 +42,15 @@ void ordenar(float vetor[MAX])
 int main()
 {
     setlocale(LC_ALL,"Portuguese");
-    float numeros[MAX]; //Declaração do vetor que será ordenado;
+    float numeros[MAX]; //Declaraï¿½ï¿½o do vetor que serï¿½ ordenado;
     cout<<"\n********Selectionsort********\n"<<endl;
-    cout<<"Digite "<<MAX<<" números"<<endl;
+    cout<<"Digite "<<MAX<<" nï¿½meros"<<endl;
     cout<<"Preencha o vetor a ser ordenado: "<<endl;
 
     //Preenchendo o vetor original;
     for (int i = 0; i < MAX; i++)
     {
-        cout<<"Número "<<i<<": ";
+        cout<<"NÃºmero "<<i<<": ";
         cin>>numeros[i];
     }
     //Imprimindo vetor antes de ordenar.
@@ -59,10 +59,10 @@ int main()
         cout << numeros[i] << " ";
     cout << "]\n" << endl;
 
-    //Invocando função que ordena o vetor.
+    //Invocando funï¿½ï¿½o que ordena o vetor.
     ordenar(numeros);
 
-    //Imprimindo vetor após ordenar;
+    //Imprimindo vetor apï¿½s ordenar;
     cout << "Vetor Ordenado: [ ";
     for (int i = 0; i < MAX; i++)
         cout << numeros[i] << " ";
