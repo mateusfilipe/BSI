@@ -17,9 +17,14 @@ void combinar(int *vetor, int inicio, int metade, int fim)
     copy (vetor, vetor + metade, vL);
     copy (vetor + metade2, vetor+fim, vR);
 
-    for(int i = 0 ; i < fim; i++){
-      vetor[i] = vL[i];
-      vetor[i+metade2] = vR[i];
+    for(int i = 0 ; i < metade2; i++){
+      for(int j = 0 ; j < metade2; j++){
+        if(vL[j]<vR[j]){
+          vetor[i] = vL[j];
+        }else{
+          vetor[i] = vR[j];
+        }
+      }
     }
 }
 void ordenar(int *vetor, int inicio, int fim, int passos)
@@ -41,23 +46,10 @@ void ordenar(int *vetor, int inicio, int fim, int passos)
 
         combinar(vetor, inicio, metade, fim);
     }else{
-        ordenar(vetor, inicio, fim, passos);
+
     }
-    int aux;
-    bool troca = true;
-    for(int i = 0 ; i < (fim) && troca ; i++){
-        troca = false;
-        for(int j = 1 ; j < (fim-i) ; j++){
-            //Verificando os valores e fazendo a troca;
-            if(vetor[j-1]>vetor[j]){
-                aux=vetor[j];
-                vetor[j]=vetor[j-1];
-                vetor[j-1]=aux;
-                troca = true;
-            }
-        }
-        if(!troca)break; //Caso n�o tenha necessidade de troca ele quebra e melhora seu custo;
-    }
+    return;
+
 }
 
 int main()
