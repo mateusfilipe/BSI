@@ -21,13 +21,13 @@ void ordenar(float vetor[MAX])
     for(int i = 0 ; i < MAX && div != 0 /*&& troca*/ ; i++){
         cont++;
         //troca = false;
-        for(int j = 1 ;  j < MAX-div ; j++){
+        for(int j = 0 ;  j < MAX-div ; j++){
             cont++;
-            if(vetor[j-1] > vetor[j+div]){
+            if(vetor[j] > vetor[j+div]){
                 cont++;
                 aux=vetor[j+div];
-                vetor[j+div]=vetor[j-1];
-                vetor[j-1]=aux;
+                vetor[j+div]=vetor[j];
+                vetor[j]=aux;
                 //troca = true;
             }
         }
