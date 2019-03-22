@@ -1,7 +1,7 @@
 //Mateus Filipe de Lima Souza - BSI 2018
 #include <iostream>
 #include <locale.h>
-#define MAX 6
+#define MAX 7
 
 using namespace std;
 
