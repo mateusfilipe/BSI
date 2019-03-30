@@ -43,11 +43,12 @@ int main()
     for(int j = n+1 ; j >= 0 ; j--){
         if(C[j] == 2){
           if(C[j-1] == 0){
-            C[j-1] = 1;
+            C[j-1] += 1;
             C[j] = 0;
           }
         }
     }
+
     cout<<"A"; printVetor(A, n);
     cout<<"B"; printVetor(B, n);
     cout<<"C"; printVetor(C, n+1);
