@@ -14,7 +14,7 @@ int main(){
   //Ordena:
   for(int i = n-1 ; i >= 0 ; i--){
     aux = vet[i];
-    j = i+1;
+    j = i+2;
       while(j <= n && vet[j] < aux){
         vet[j-1] = vet[j];
         j++;
