@@ -37,19 +37,22 @@ int main()
       C[i] = 0;
     }
     //Executa a soma binária:
-    for(int i = n+1 ; i >= 0 ; i--){
-      C[i+1] = A[i] + B[i];
-    }
-    for(int j = n+1 ; j >= 0 ; j--){
-        if(C[j] == 2){
-          if(C[j-1] == 0){
-            C[j-1] += 1;
-            C[j] = 0;
-          }else{
-
-          }
+    int aux = 0, soma = 0;
+    for(int i = n ; i >= 0 ; i--){
+        soma = A[i-1]+B[i-1]+aux;
+        if(soma <= 1){
+          aux = 0;
+          C[i] = soma;
+        }else if(soma == 2){
+          aux = 1;
+          C[i] = 0;
+        }else if(soma == 3){
+          aux = 1;
+          C[i] = 1;
         }
     }
+    C[0] = aux;
+    //-----------------------
 
     cout<<"A"; printVetor(A, n);
     cout<<"B"; printVetor(B, n);

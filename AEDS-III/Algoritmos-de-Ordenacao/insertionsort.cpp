@@ -12,7 +12,7 @@ int main(){
     cin>>vet[i];
   }
   //Ordena:
-  for(int i = n-1 ; i > 0 ; i--){
+  for(int i = n-1 ; i >= 0 ; i--){
     aux = vet[i];
     j = i+1;
       while(j <= n && vet[j] < aux){
