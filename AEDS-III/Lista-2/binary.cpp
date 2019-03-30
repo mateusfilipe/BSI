@@ -40,12 +40,13 @@ int main()
     for(int i = n+1 ; i >= 0 ; i--){
       C[i+1] = A[i] + B[i];
     }
-    for(int i = n+1 ; i > 0 ; i--){
-      if(C[i] == 2){
-        C[i+1] = 1;
-        C[i-1] = 0;
-        C[i] = 0;
-      }
+    for(int j = n+1 ; j >= 0 ; j--){
+        if(C[j] == 2){
+          if(C[j-1] == 0){
+            C[j-1] = 1;
+            C[j] = 0;
+          }
+        }
     }
     cout<<"A"; printVetor(A, n);
     cout<<"B"; printVetor(B, n);
