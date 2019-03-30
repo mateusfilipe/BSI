@@ -16,7 +16,7 @@ def ordenar(vetor):
         aux = vetor[menor]
         vetor[menor] = vetor[i]
         vetor[i] = aux
-      
+
     print(vetor)
-    
+
 ordenar([5 , 2 , 4 , 6 , 1 , 3])
