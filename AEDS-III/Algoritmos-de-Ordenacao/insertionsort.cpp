@@ -2,7 +2,7 @@
 
 using namespace std;
 int main(){
-  int aux, n, j;
+  int n, j;
 //  cout<<"Tamanho: ";
 //  cin>>n;
   n = 6;
@@ -12,6 +12,7 @@ int main(){
     cin>>vet[i];
   }
   //Ordena:
+  int aux;
   for(int i = n-1 ; i >= 0 ; i--){
     aux = vet[i];
     j = i+1;
