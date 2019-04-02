@@ -22,7 +22,7 @@ int main()
     cin>>a;
     cin>>n;
     r = a;
-    for(int i = 1 ; i < n ; i++, contB++){
+    for(int i = 0 ; i < n ; i++, contB++){
       r *= a;
     }
     cout<<">Dividir-para-conquistar(Recursivo): "<<endl;
