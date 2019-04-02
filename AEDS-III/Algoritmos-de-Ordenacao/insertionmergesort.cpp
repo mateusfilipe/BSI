@@ -49,7 +49,21 @@ void combinar(int *vetor, int inicio, int meio, int fim)
         iv++;
     }
 }
-void mergesort(int *vetor, int inicio, int fim)
+void insertionSort(int *vet, int n){
+  //Ordena:
+  int aux, j;
+  for(int i = 1 ; i < n ; i++){
+    aux = vet[i];
+    j = i-1;
+      while(j >= 0 && vet[j] > aux){
+        vet[j+1] = vet[j];
+        j--;
+      }
+      vet[j+1] = aux;
+  }
+  //-------
+}
+void mergesort(int *vetor, int inicio, int fim, int k)
 {
     //1. se a instancia for pequena, resolver imediatamente
     //2. caso contrário:
@@ -59,14 +73,16 @@ void mergesort(int *vetor, int inicio, int fim)
     //5. resolver a segunda meio usando o mesmo algoritmo
     //6. combinar as subsoluções na solução final
 
-    if(inicio < fim){
-        int meio;
-        meio = ((fim-inicio)/2)+inicio;
+    if(fim - inicio <= k){
+      insertionSort(vetor, k);
+    }else{
+      int meio;
+      meio = ((fim-inicio)/2)+inicio;
 
-        mergesort(vetor, inicio, meio);
-        mergesort(vetor, meio+1, fim);
+      mergesort(vetor, inicio, meio, k);
+      mergesort(vetor, meio+1, fim, k);
 
-        combinar(vetor, inicio, meio, fim);
+      combinar(vetor, inicio, meio, fim);
     }
     return;
 }
@@ -74,11 +90,13 @@ void mergesort(int *vetor, int inicio, int fim)
 int main()
 {
     setlocale(LC_ALL,"Portuguese");
-    int qtde;
+    int qtde, k;
     cout << "Programa de Teste de Ordenação" << endl
          << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl
          << "Quantos números aleatorios devo gerar? : ";
     cin >> qtde;
+    cout<<"Dê um valor para 'k': "<<endl;
+    cin>>k;
 
     int *vetor = new int[qtde];
 
@@ -102,7 +120,7 @@ int main()
 
     cout << "Ordenando... " << endl;
 
-    mergesort(vetor, 0, qtde-1);
+    mergesort(vetor, 0, qtde-1, k);
 
     cout << passos << " passos." << endl << endl;
 
