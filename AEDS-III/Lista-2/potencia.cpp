@@ -22,12 +22,12 @@ int main()
     cin>>a;
     cin>>n;
     r = a;
-    for(int i = 1 ; i < n ; i++){
-      contB++;
+    for(int i = 1 ; i < n ; i++, contB++){
       r *= a;
     }
     cout<<">Dividir-para-conquistar(Recursivo): "<<endl;
-    cout<<"-Resultado:"<<potencia(a,n)<<"\n-Passos: "<<contR<<endl;
+    cout<<"-Resultado:"<<potencia(a,n)<<endl;
+    cout<<"-Passos: "<<contR<<endl;
     cout<<"\n>Fuerza Bruta(Repeticion): "<<r<<endl;
     cout<<"-Resultado:"<<r<<"\n-Passos: "<<contB<<endl;
     return 0;
