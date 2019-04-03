@@ -15,53 +15,64 @@ void combinar(int *vetor, int inicio, int meio, int fim)
     int *vL = new int[meio-inicio+1];
     int *vR = new int[fim-meio];
 
-    for(int i = 0 ; i < meio-inicio+1 ; i++){
+    for(int i = 0 ; i < meio-inicio+1 ; i++)
+    {
         passos++;
         vL[i] = vetor[inicio+i];
     }
-    for(int i = 0 ; i < fim-meio; i++){
+    for(int i = 0 ; i < fim-meio; i++)
+    {
         passos++;
         vR[i] = vetor[meio+i+1];
     }
 
     int ie = 0, id = 0, iv = inicio;
-    while(ie < (meio-inicio+1) && id < (fim-meio)){
+    while(ie < (meio-inicio+1) && id < (fim-meio))
+    {
         passos++;
-        if(vL[ie] < vR[id]){
+        if(vL[ie] < vR[id])
+        {
             vetor[iv] = vL[ie];
             ie++;
-        }else{
+        }
+        else
+        {
             vetor[iv] = vR[id];
             id++;
         }
         iv++;
     }
-    while(ie < (meio-inicio+1)){
+    while(ie < (meio-inicio+1))
+    {
         passos++;
         vetor[iv] = vL[ie];
         ie++;
         iv++;
     }
-    while(id < (fim-meio)){
+    while(id < (fim-meio))
+    {
         passos++;
         vetor[iv] = vR[id];
         id++;
         iv++;
     }
 }
-void insertionSort(int *vet, int n){
-  //Ordena:
-  int aux, j;
-  for(int i = 1 ; i < n ; i++){
-    aux = vet[i];
-    j = i-1;
-      while(j >= 0 && vet[j] > aux){
-        vet[j+1] = vet[j];
-        j--;
-      }
-      vet[j+1] = aux;
-  }
-  //-------
+void insertionSort(int *vet, int inicio, int fim)
+{
+    //Ordena:
+    int aux, j;
+    for(int i = inicio+1 ; i < fim+1; i++)
+    {
+        aux = vet[i];
+        j = i-1;
+        while(j >= inicio && vet[j] > aux)
+        {
+            vet[j+1] = vet[j];
+            j--;
+        }
+        vet[j+1] = aux;
+    }
+    //-------
 }
 void mergesort(int *vetor, int inicio, int fim, int k)
 {
@@ -72,18 +83,20 @@ void mergesort(int *vetor, int inicio, int fim, int k)
     //4. resolver a primeira meio usando o mesmo algoritmo
     //5. resolver a segunda meio usando o mesmo algoritmo
     //6. combinar as subsoluções na solução final
-
-    if(fim - inicio <= k){
-      insertionSort(vetor, k);
-    }else{
-      int meio;
-      meio = ((fim-inicio)/2)+inicio;
-
-      mergesort(vetor, inicio, meio, k);
-      mergesort(vetor, meio+1, fim, k);
-
-      combinar(vetor, inicio, meio, fim);
+    int meio;
+    meio =  ((fim+inicio)/2.0);
+    if((fim-inicio+1)  <= k)
+    {
+        insertionSort(vetor,inicio, fim);
     }
+    else
+    {
+        mergesort(vetor, inicio, meio, k);
+        mergesort(vetor, meio+1, fim, k);
+
+        combinar(vetor, inicio, meio, fim);
+    }
+
     return;
 }
 
@@ -100,8 +113,8 @@ int main()
 
     int *vetor = new int[qtde];
 
-   default_random_engine motor;
-   uniform_int_distribution<int> distribuicao(1,100);
+    default_random_engine motor;
+    uniform_int_distribution<int> distribuicao(1,100);
 
     cout << "Gerando " << qtde << " números.";
 
