@@ -68,7 +68,7 @@ int main()
 {
     setlocale(LC_ALL, "Portuguese");
 
-    lerArquivo("programa1.txt");
+    lerArquivo("programa3.txt");
     cout<<endl;
     system("PAUSE");
     return 0;
@@ -105,8 +105,9 @@ void tipoR(char *dados, int op, int funct)
     ofstream saida;
     saida.open("saida.txt",fstream::app);
 
-    //saida  /*<<"op: "*/<<bin(op) <<" ";
+    saida  /*<<"op: "*/<<bin(op) <<" ";
 
+    /*
     //Escrevendo OP:
     vAux = new int[6];
     vAux = zeroaEsquerda(bin(op),6);
@@ -115,11 +116,12 @@ void tipoR(char *dados, int op, int funct)
         saida << vAux[i];
     }
     saida<<" ";
-
+    */
 
     dados = strtok(NULL,",");
     cout<<dados<<endl;
-    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
+    saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
+    /*
     //Escrevendo r:
     vAux = new int[5];
     vAux = zeroaEsquerda(bin(getRegister(dados)),5);
@@ -128,11 +130,13 @@ void tipoR(char *dados, int op, int funct)
         saida << vAux[i];
     }
     saida<<" ";
+    */
 
     dados = strtok(NULL,", ,");
     cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
+    /*
     //Escrevendo r:
     vAux = new int[5];
     vAux = zeroaEsquerda(bin(getRegister(dados)),5);
@@ -141,11 +145,12 @@ void tipoR(char *dados, int op, int funct)
         saida << vAux[i];
     }
     saida<<" ";
-
+    */
     dados = strtok(NULL,", , ,");
     cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
+    /*
     //Escrevendo r:
     vAux = new int[5];
     vAux = zeroaEsquerda(bin(getRegister(dados)),5);
@@ -154,9 +159,10 @@ void tipoR(char *dados, int op, int funct)
         saida << vAux[i];
     }
     saida<<" ";
-
+    */
+    saida /*<<"shamt: "*/<<bin(0)<<" ";
+    /*
     //Escrevendo shamt:
-    //saida /*<<"shamt: "*/<<bin(0)<<" ";
     vAux = new int[5];
     vAux = zeroaEsquerda(bin(0),5);
     for(int i = 1; i <= 5 ; i++)
@@ -164,9 +170,10 @@ void tipoR(char *dados, int op, int funct)
         saida << vAux[i];
     }
     saida<<" ";
-
+    */
+    saida /*<<"funct: "*/<<bin(funct)<<" ";
+    /*
     //Escrevendo shamt:
-    //saida /*<<"funct: "*/<<bin(funct)<<" ";
     vAux = new int[6];
     vAux = zeroaEsquerda(bin(funct),6);
     for(int i = 1; i <= 6 ; i++)
@@ -174,6 +181,7 @@ void tipoR(char *dados, int op, int funct)
         saida << vAux[i];
     }
     saida<<" ";
+    */
     saida<<endl;
 }
 
