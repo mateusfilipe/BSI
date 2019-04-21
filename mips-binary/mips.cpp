@@ -32,13 +32,6 @@ using namespace std;
     *-----------------------------------------------------*
 */
 
-long long int bin(long long int k)
-{
-    if ( k < 2 )
-        return k;
-
-    return ( 10 * bin( k / 2 ) ) + k % 2;
-}
 
 void lerArquivo(char *nomeArquivo); //Executa a leitura do arquivo;
 void getOperation(char *dados); //Descobre o valor da função op;
@@ -46,12 +39,36 @@ int getRegister(char *dados); //Descobre o valor do registrador, seja, rs, rt, r
 void tipoI(char *dados, int op); //Exexuta a conversão e gravação em funções do tipo I;
 void tipoR(char *dados); //Exexuta a conversão e gravação em funções do tipo R;
 
+int *zeroaEsquerda(long long bina, int n)  //Exexuta a conversão e gravação em funções do tipo R;
+{
+    int *vetor;
+    long long aux = 1;
+    vetor = new int[n];
+    for(int i = 0 ; i < n ; i++)
+    {
+        vetor[i] = 0;
+    }
+    for(int i = n ; i > 0 ; i--)
+    {
+        vetor[i] = (bina/aux)%10;
+        aux*=10;
+    }
+    return vetor;
+}
+
+long long int bin(long long int k) //Converter número em binário;
+{
+    if ( k < 2 )
+        return k;
+
+    return ( 10 * bin( k / 2 ) ) + k % 2;
+}
 
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
 
-    lerArquivo("programa2.txt");
+    lerArquivo("programa1.txt");
     cout<<endl;
     system("PAUSE");
     return 0;
@@ -78,31 +95,85 @@ void lerArquivo(char *nomeArquivo)
         //cout<<" rs: "<<getRegister(ch)<<endl;
 
     }
+    ler.close();
 }
 
 void tipoR(char *dados, int op, int funct)
 {
+    int *vAux;
+
     ofstream saida;
     saida.open("saida.txt",fstream::app);
 
-    saida  <<"op: "<<bin(op) <<" ";
+    //saida  /*<<"op: "*/<<bin(op) <<" ";
+
+    //Escrevendo OP:
+    vAux = new int[6];
+    vAux = zeroaEsquerda(bin(op),6);
+    for(int i = 1; i <= 6 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
+
 
     dados = strtok(NULL,",");
     cout<<dados<<endl;
-    saida <<"r: "<<bin(getRegister(dados))<<" ";
+    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
+    //Escrevendo r:
+    vAux = new int[5];
+    vAux = zeroaEsquerda(bin(getRegister(dados)),5);
+    for(int i = 1; i <= 5 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
 
     dados = strtok(NULL,", ,");
     cout<<dados<<endl;
-    saida <<"r: "<<bin(getRegister(dados))<<" ";
+    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
+
+    //Escrevendo r:
+    vAux = new int[5];
+    vAux = zeroaEsquerda(bin(getRegister(dados)),5);
+    for(int i = 1; i <= 5 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
 
     dados = strtok(NULL,", , ,");
     cout<<dados<<endl;
-    saida <<"r: "<<bin(getRegister(dados))<<" ";
+    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
-    saida <<"shamt: "<<bin(0)<<" ";
+    //Escrevendo r:
+    vAux = new int[5];
+    vAux = zeroaEsquerda(bin(getRegister(dados)),5);
+    for(int i = 1; i <= 5 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
 
-    saida <<"funct: "<<bin(funct)<<" ";
+    //Escrevendo shamt:
+    //saida /*<<"shamt: "*/<<bin(0)<<" ";
+    vAux = new int[5];
+    vAux = zeroaEsquerda(bin(0),5);
+    for(int i = 1; i <= 5 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
 
+    //Escrevendo shamt:
+    //saida /*<<"funct: "*/<<bin(funct)<<" ";
+    vAux = new int[6];
+    vAux = zeroaEsquerda(bin(funct),6);
+    for(int i = 1; i <= 6 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
     saida<<endl;
 }
 
@@ -110,17 +181,35 @@ void tipoI(char *dados, int op)
 {
     int r;
     long long n;
+    int *vAux;
 
     ofstream saida;
 
     saida.open("saida.txt",fstream::app);
 
-    saida <<"op: "<< bin(op)<< " ";
+    //saida /*<<"op: "*/<<bin(op)<< " ";
+    //Escrevendo OP:
+    vAux = new int[5];
+    vAux = zeroaEsquerda(bin(op),5);
+    for(int i = 1; i <= 5 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
 
     dados = strtok(NULL, ",");
-    cout<<dados<<endl;
 
-    saida<<"r: "<<bin(getRegister(dados))<<" ";
+    vAux = new int [5];
+    vAux = zeroaEsquerda(bin(getRegister(dados)),5);
+
+    for(int i = 1 ; i <= 5 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
+
+    //cout<<dados<<endl;
+    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
     dados = strtok(NULL," (");
     cout<<dados<<endl;
@@ -130,8 +219,32 @@ void tipoI(char *dados, int op)
     cout<<dados<<endl;
     r = bin(getRegister(dados));
 
-    saida << "rt: "<<r<<" ";
-    saida << "num: "<<n<<" ";
+    //saida /*<< "rt: "*/<<r<<" ";
+    //saida /*<< "num: "*/<<n<<" ";
+
+
+    //Escrevendo rs:
+    vAux = new int [5];
+    vAux = zeroaEsquerda(r,5);
+
+    //saida << "r: ";
+    for(int i = 1 ; i <= 5 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
+
+    //Escrevendo num:
+    vAux = new int [16];
+    vAux = zeroaEsquerda(n,16);
+
+    //saida <<"num: ";
+    for(int i = 1 ; i <= 16 ; i++)
+    {
+        saida << vAux[i];
+    }
+    saida<<" ";
+
 
     saida<<endl;
 }
