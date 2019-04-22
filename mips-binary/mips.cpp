@@ -42,7 +42,6 @@ void tipoII(char *dados, int op); //Exexuta a conversão e gravação em funções do
 void tipoR(char *dados); //Exexuta a conversão e gravação em funções do tipo R;
 void tipoJ(char *dados); //Exexuta a conversão e gravação em funções do tipo J;
 
-
 long long int bin(long long int k) //Converter número em binário;
 {
     if ( k < 2 )
@@ -55,7 +54,7 @@ int main()
 {
     setlocale(LC_ALL, "Portuguese");
 
-    lerArquivo("programa3.txt");
+    lerArquivo("programa1.txt");
     cout<<endl;
     system("PAUSE");
     return 0;
@@ -76,11 +75,6 @@ void lerArquivo(char *nomeArquivo)
         ler.getline(linhas, 255);
         ch = strtok(linhas," ");
         getOperation(ch);
-        //cout<<ch<<endl;
-        //ch = strtok(NULL," ");
-        //cout<<ch;
-        //cout<<" rs: "<<getRegister(ch)<<endl;
-
     }
     ler.close();
 }
@@ -99,8 +93,6 @@ void tipoR(char *dados, int op, int funct)
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
     //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
     rt = bin(getRegister(dados));
-
-
 
     dados = strtok(NULL,", ,");
     cout<<dados<<endl;
@@ -122,7 +114,7 @@ void tipoR(char *dados, int op, int funct)
     shamt = bin(0);
 
     //saida /*<<"funct: "*/<<bin(funct)<<" ";
-   // saida  << setw(6)<<setfill('0') << bin(funct)<<" ";
+    //saida  << setw(6)<<setfill('0') << bin(funct)<<" ";
     funct1 = bin(funct);
 
     saida  << setw(5)<<setfill('0') << rs <<"";
@@ -133,6 +125,36 @@ void tipoR(char *dados, int op, int funct)
 
 
     saida<<endl;
+}
+
+void tipoRR(char *dados, int op, int funct)
+{
+    long long n, rt, rs;
+    ofstream saida;
+    saida.open("saida.txt",fstream::app);
+    saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< "";
+
+    //Escrevendo OP:
+
+    dados = strtok(NULL, ",");
+    rt = bin(getRegister(dados));
+
+    dados = strtok(NULL,", ,");
+
+    cout<<dados<<endl;
+
+    rs = bin(getRegister(dados));
+
+    dados = strtok(NULL," ");
+    cout<<dados<<endl;
+    n = bin(atoi(dados));
+    saida  << setw(5)<<setfill('0') <<"";
+    saida  << setw(5)<<setfill('0') << rs <<"";
+    saida  << setw(5)<<setfill('0') << rt <<"";
+    saida  << setw(5)<<setfill('0') << n <<"";
+    saida  << setw(6)<<setfill('0') <<"";
+
+
 }
 
 void tipoI(char *dados, int op)
@@ -149,7 +171,7 @@ void tipoI(char *dados, int op)
 
     dados = strtok(NULL, ",");
     rt = bin(getRegister(dados));
-   //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" ";
+    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" ";
 
     //cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
@@ -210,7 +232,8 @@ void tipoII(char *dados, int op)
     saida<<endl;
 }
 
-void tipoJ(char *dados, int op){
+void tipoJ(char *dados, int op)
+{
 
     ofstream saida;
     saida.open("saida.txt",fstream::app);
@@ -220,7 +243,7 @@ void tipoJ(char *dados, int op){
 
     dados = strtok(NULL, " ");
 
-    saida << setw(26)<<setfill('0') << bin(atoi(dados)) <<"";
+    saida << setw(26)<<setfill('0') << bin(atoi(dados)) <<""; //GRAVA NUM
     saida << endl;
 }
 
@@ -354,22 +377,22 @@ void getOperation(char *dados)
     }
     else if(dados[0] == 'b' && dados[1] == 'e' && dados[2] == 'q')  //BEQ
     {
-        tipoI(dados, 4);
+        tipoII(dados, 4);
         //return 4;   op(BEQ);
     }
     else if(dados[0] == 'b' && dados[1] == 'n' && dados[2] == 'e')  //BNE
     {
-        tipoI(dados, 5);
+        tipoII(dados, 5);
         //return 5;   op(BNE);
     }
     else if(dados[0] == 'b' && dados[1] == 'l' && dados[2] == 'e' && dados[3] == 'z')  //BLEZ
     {
-        tipoI(dados, 6);
+        tipoII(dados, 6);
         //return 6;   op(BLEZ);
     }
     else if(dados[0] == 'b' && dados[1] == 'g' && dados[2] == 't' && dados[3] == 'z')  //BGTZ
     {
-        tipoI(dados, 7);
+        tipoII(dados, 7);
         //return 7;   op(BGTZ);
     }
     /*
@@ -377,7 +400,6 @@ void getOperation(char *dados)
         *******************ENCERRANDO PROCURA POR COMANDOS DO TIPO 'I'*******************
         *********************************************************************************
     */
-    //======================================================================================//
     /*
        *********************************************************************************
        *******************COMEÇANDO PROCURA POR COMANDOS DO TIPO 'R'********************
@@ -435,52 +457,52 @@ void getOperation(char *dados)
     }
     else if(dados[0] == 's' && dados[1] == 'l' && dados[2] == 'l')  //SLL
     {
-        tipoR(dados, 0, 0);
+        tipoRR(dados, 0, 0);
         //return 0;   op(SLL);
     }
     else if(dados[0] == 's' && dados[1] == 'r' && dados[2] == 'l')  //SRL
     {
-        tipoR(dados, 0, 2);
+        tipoRR(dados, 0, 2);
         //return 0;   op(SRL);
     }
     else if(dados[0] == 's' && dados[1] == 'r' && dados[2] == 'a')  //SRA
     {
-        tipoR(dados, 0, 3);
+        tipoRR(dados, 0, 3);
         //return 0;   op(SRA);
     }
     else if(dados[0] == 's' && dados[1] == 'l' && dados[2] == 'l' && dados[3] == 'v')  //SLLV
     {
-        tipoR(dados, 0, 4);
+        tipoRR(dados, 0, 4);
         //return 0;   op(SLLW);
     }
     else if(dados[0] == 's' && dados[1] == 'r' && dados[2] == 'l' && dados[3] == 'v')  //SRLV
     {
-        tipoR(dados, 0, 6);
+        tipoRR(dados, 0, 6);
         //return 0;   op(SRLV);
     }
     else if(dados[0] == 's' && dados[1] == 'r' && dados[2] == 'a' && dados[3] == 'v')  //SRAV
     {
-        tipoR(dados, 0, 7);
+        tipoRR(dados, 0, 7);
         //return 0;   op(SRAV);
     }
     else if(dados[0] == 'm' && dados[1] == 'f' && dados[2] == 'h' && dados[3] == 'i')  //MFHI
     {
-        tipoR(dados, 0, 16);
+        tipoRR(dados, 0, 16);
         //return 0;   op(MFHI);
     }
     else if(dados[0] == 'm' && dados[1] == 't' && dados[2] == 'h' && dados[3] == 'i')  //MTHI
     {
-        tipoR(dados, 0, 17);
+        tipoRR(dados, 0, 17);
         //return 0;   op(MTHI);
     }
     else if(dados[0] == 'm' && dados[1] == 'f' && dados[2] == 'l' && dados[3] == 'o')  //MFLO
     {
-        tipoR(dados, 0, 18);
+        tipoRR(dados, 0, 18);
         //return 0;   op(MFLO);
     }
     else if(dados[0] == 'm' && dados[1] == 't' && dados[2] == 'l' && dados[2] == 'o')  //MTLO
     {
-        tipoR(dados, 0, 19);
+        tipoRR(dados, 0, 19);
         //return 0;   op(MTLO);
     }
     else if(dados[0] == 'm' && dados[1] == 'u' && dados[2] == 'l' && dados[3] == 't')  //MULT
@@ -518,7 +540,6 @@ void getOperation(char *dados)
         *******************ENCERRANDO PROCURA POR COMANDOS DO TIPO 'R'*******************
         *********************************************************************************
     */
-    //======================================================================================//
     /*
        *********************************************************************************
        *******************COMEÇANDO PROCURA POR COMANDOS DO TIPO 'J'********************
