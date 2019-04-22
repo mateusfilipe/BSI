@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
+#include <iomanip>
 #include <math.h>
 
 int TAM;
@@ -38,23 +39,8 @@ void getOperation(char *dados); //Descobre o valor da função op;
 int getRegister(char *dados); //Descobre o valor do registrador, seja, rs, rt, rd;
 void tipoI(char *dados, int op); //Exexuta a conversão e gravação em funções do tipo I;
 void tipoR(char *dados); //Exexuta a conversão e gravação em funções do tipo R;
+void tipoJ(char *dados); //Exexuta a conversão e gravação em funções do tipo R;
 
-int *zeroaEsquerda(long long bina, int n)  //Exexuta a conversão e gravação em funções do tipo R;
-{
-    int *vetor;
-    long long aux = 1;
-    vetor = new int[n];
-    for(int i = 0 ; i < n ; i++)
-    {
-        vetor[i] = 0;
-    }
-    for(int i = n ; i > 0 ; i--)
-    {
-        vetor[i] = (bina/aux)%10;
-        aux*=10;
-    }
-    return vetor;
-}
 
 long long int bin(long long int k) //Converter número em binário;
 {
@@ -68,7 +54,7 @@ int main()
 {
     setlocale(LC_ALL, "Portuguese");
 
-    lerArquivo("programa3.txt");
+    lerArquivo("programa1.txt");
     cout<<endl;
     system("PAUSE");
     return 0;
@@ -100,88 +86,37 @@ void lerArquivo(char *nomeArquivo)
 
 void tipoR(char *dados, int op, int funct)
 {
-    int *vAux;
-
     ofstream saida;
     saida.open("saida.txt",fstream::app);
 
-    saida  /*<<"op: "*/<<bin(op) <<" ";
-
-    /*
-    //Escrevendo OP:
-    vAux = new int[6];
-    vAux = zeroaEsquerda(bin(op),6);
-    for(int i = 1; i <= 6 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
-    */
+    //saida  /*<<"op: "*/<<bin(op) <<" ";
+    saida  << setw(6)<<setfill('0') << bin(op) <<" "; //GRAVA OP
 
     dados = strtok(NULL,",");
     cout<<dados<<endl;
-    saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
-    /*
-    //Escrevendo r:
-    vAux = new int[5];
-    vAux = zeroaEsquerda(bin(getRegister(dados)),5);
-    for(int i = 1; i <= 5 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
-    */
+    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
+    saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
 
     dados = strtok(NULL,", ,");
     cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
-    /*
-    //Escrevendo r:
-    vAux = new int[5];
-    vAux = zeroaEsquerda(bin(getRegister(dados)),5);
-    for(int i = 1; i <= 5 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
-    */
+    saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
+
+
     dados = strtok(NULL,", , ,");
     cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
-    /*
-    //Escrevendo r:
-    vAux = new int[5];
-    vAux = zeroaEsquerda(bin(getRegister(dados)),5);
-    for(int i = 1; i <= 5 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
-    */
-    saida /*<<"shamt: "*/<<bin(0)<<" ";
-    /*
-    //Escrevendo shamt:
-    vAux = new int[5];
-    vAux = zeroaEsquerda(bin(0),5);
-    for(int i = 1; i <= 5 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
-    */
-    saida /*<<"funct: "*/<<bin(funct)<<" ";
-    /*
-    //Escrevendo shamt:
-    vAux = new int[6];
-    vAux = zeroaEsquerda(bin(funct),6);
-    for(int i = 1; i <= 6 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
-    */
+    saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
+
+
+    //saida /*<<"shamt: "*/<<bin(0)<<" ";
+    saida  << setw(5)<<setfill('0') << bin(0)<<" "; //GRAVA
+
+    //saida /*<<"funct: "*/<<bin(funct)<<" ";
+    saida  << setw(6)<<setfill('0') << bin(funct)<<" ";
+
     saida<<endl;
 }
 
@@ -189,32 +124,17 @@ void tipoI(char *dados, int op)
 {
     int r;
     long long n;
-    int *vAux;
 
     ofstream saida;
 
     saida.open("saida.txt",fstream::app);
 
-    //saida /*<<"op: "*/<<bin(op)<< " ";
+    saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< " ";
     //Escrevendo OP:
-    vAux = new int[5];
-    vAux = zeroaEsquerda(bin(op),5);
-    for(int i = 1; i <= 5 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
 
     dados = strtok(NULL, ",");
 
-    vAux = new int [5];
-    vAux = zeroaEsquerda(bin(getRegister(dados)),5);
-
-    for(int i = 1 ; i <= 5 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
+    saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" ";
 
     //cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
@@ -230,31 +150,23 @@ void tipoI(char *dados, int op)
     //saida /*<< "rt: "*/<<r<<" ";
     //saida /*<< "num: "*/<<n<<" ";
 
-
-    //Escrevendo rs:
-    vAux = new int [5];
-    vAux = zeroaEsquerda(r,5);
-
-    //saida << "r: ";
-    for(int i = 1 ; i <= 5 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
-
-    //Escrevendo num:
-    vAux = new int [16];
-    vAux = zeroaEsquerda(n,16);
-
-    //saida <<"num: ";
-    for(int i = 1 ; i <= 16 ; i++)
-    {
-        saida << vAux[i];
-    }
-    saida<<" ";
-
+    saida  << setw(5)<<setfill('0') << r <<" ";
+    saida  << setw(16)<<setfill('0') << n <<" ";
 
     saida<<endl;
+}
+
+void tipoJ(char *dados, int op){
+
+    ofstream saida;
+    saida.open("saida.txt",fstream::app);
+
+    //saida  /*<<"op: "*/<<bin(op) <<" ";
+    saida  << setw(6)<<setfill('0') << bin(op) <<" "; //GRAVA OP
+
+    dados = strtok(NULL, " ");
+
+    saida << setw(26)<<setfill('0') << bin(atoi(dados)) <<" ";
 }
 
 void getOperation(char *dados)
@@ -559,10 +471,12 @@ void getOperation(char *dados)
     */
     else if(dados[0] == 'j' )  //J
     {
+        tipoJ(dados, 2);
         //return 2;   op(J);
     }
     else if(dados[0] == 'j' && dados[1] == 'a' && dados[2] == 'l')  //JAL
     {
+        tipoJ(dados, 3);
         //return 3;   op(JAL);
     }
     /*
@@ -578,43 +492,35 @@ int getRegister(char *dados)
     {
         if(dados[2] == '0')  //$t0
         {
-            return 4;
+            return 8;
         }
         else if(dados[2] == '1')   //$t1
         {
-            return 5;
+            return 9;
         }
         else if(dados[2] == '2')   //$t2
         {
-            return 6;
+            return 10;
         }
         else if(dados[2] == '3')   //$t3
         {
-            return 7;
+            return 11;
         }
         else if(dados[2] == '4')   //$t4
         {
-            return 8;
+            return 12;
         }
         else if(dados[2] == '5')   //$t5
         {
-            return 9;
+            return 13;
         }
         else if(dados[2] == '6')   //$t6
         {
-            return 10;
+            return 14;
         }
         else if(dados[2] == '7')   //$t7
         {
-            return 11;
-        }
-        else if(dados[2] == '8')   //$t8
-        {
-            return 12;
-        }
-        else if(dados[2] == '9')   //$t9
-        {
-            return 13;
+            return 15;
         }
     }
     else if(dados[1] == 's')   //$s+
@@ -651,14 +557,7 @@ int getRegister(char *dados)
         {
             return 23;
         }
-        else if(dados[2] == '8')   //$s8
-        {
-            return 24;
-        }
-        else if(dados[2] == '9')   //$s9
-        {
-            return 25;
-        }
+
         else if(dados[2] == 'z')   //$szero
         {
             return 0;
