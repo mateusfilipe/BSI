@@ -38,8 +38,9 @@ void lerArquivo(char *nomeArquivo); //Executa a leitura do arquivo;
 void getOperation(char *dados); //Descobre o valor da função op;
 int getRegister(char *dados); //Descobre o valor do registrador, seja, rs, rt, rd;
 void tipoI(char *dados, int op); //Exexuta a conversão e gravação em funções do tipo I;
+void tipoII(char *dados, int op); //Exexuta a conversão e gravação em funções do tipo I diferenciadas;
 void tipoR(char *dados); //Exexuta a conversão e gravação em funções do tipo R;
-void tipoJ(char *dados); //Exexuta a conversão e gravação em funções do tipo R;
+void tipoJ(char *dados); //Exexuta a conversão e gravação em funções do tipo J;
 
 
 long long int bin(long long int k) //Converter número em binário;
@@ -54,7 +55,7 @@ int main()
 {
     setlocale(LC_ALL, "Portuguese");
 
-    lerArquivo("programa1.txt");
+    lerArquivo("programa3.txt");
     cout<<endl;
     system("PAUSE");
     return 0;
@@ -86,55 +87,69 @@ void lerArquivo(char *nomeArquivo)
 
 void tipoR(char *dados, int op, int funct)
 {
+    int rs, rt, rd, shamt, funct1;
     ofstream saida;
     saida.open("saida.txt",fstream::app);
 
     //saida  /*<<"op: "*/<<bin(op) <<" ";
-    saida  << setw(6)<<setfill('0') << bin(op) <<" "; //GRAVA OP
+    saida  << setw(6)<<setfill('0') << bin(op) <<""; //GRAVA OP
 
     dados = strtok(NULL,",");
     cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
-    saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
+    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
+    rt = bin(getRegister(dados));
+
+
 
     dados = strtok(NULL,", ,");
     cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
-    saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
+    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
+    rs = bin(getRegister(dados));
 
 
     dados = strtok(NULL,", , ,");
     cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
-    saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
-
+    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
+    rd = bin(getRegister(dados));
 
     //saida /*<<"shamt: "*/<<bin(0)<<" ";
-    saida  << setw(5)<<setfill('0') << bin(0)<<" "; //GRAVA
+    //saida  << setw(5)<<setfill('0') << bin(0)<<" "; //GRAVA SHAMT
+    shamt = bin(0);
 
     //saida /*<<"funct: "*/<<bin(funct)<<" ";
-    saida  << setw(6)<<setfill('0') << bin(funct)<<" ";
+   // saida  << setw(6)<<setfill('0') << bin(funct)<<" ";
+    funct1 = bin(funct);
+
+    saida  << setw(5)<<setfill('0') << rs <<"";
+    saida  << setw(5)<<setfill('0') << rt <<"";
+    saida  << setw(5)<<setfill('0') << rd <<"";
+    saida  << setw(5)<<setfill('0') << shamt <<"";
+    saida  << setw(6)<<setfill('0') << funct1 <<"";
+
 
     saida<<endl;
 }
 
 void tipoI(char *dados, int op)
 {
-    int r;
+    int rs, rt;
     long long n;
 
     ofstream saida;
 
     saida.open("saida.txt",fstream::app);
 
-    saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< " ";
+    saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< "";
     //Escrevendo OP:
 
     dados = strtok(NULL, ",");
-
-    saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" ";
+    rt = bin(getRegister(dados));
+   //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" ";
 
     //cout<<dados<<endl;
     //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
@@ -145,13 +160,52 @@ void tipoI(char *dados, int op)
 
     dados = strtok(NULL,")");
     cout<<dados<<endl;
-    r = bin(getRegister(dados));
+    rs = bin(getRegister(dados));
 
     //saida /*<< "rt: "*/<<r<<" ";
     //saida /*<< "num: "*/<<n<<" ";
 
-    saida  << setw(5)<<setfill('0') << r <<" ";
-    saida  << setw(16)<<setfill('0') << n <<" ";
+    saida  <</*"rs:" <<*/setw(5)<<setfill('0') << rs <<"";
+    saida  <</*"rt:" <<*/setw(5)<<setfill('0') << rt <<"";
+    saida  <</*"n:"<<*/ setw(16)<<setfill('0') << n <<"";
+
+    saida<<endl;
+}
+
+void tipoII(char *dados, int op)
+{
+    int rs, rt;
+    long long n;
+
+    ofstream saida;
+
+    saida.open("saida.txt",fstream::app);
+    //Escrevendo OP:
+    saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< "";
+
+    dados = strtok(NULL, ",");
+    rt = bin(getRegister(dados));
+    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" ";
+
+    //cout<<dados<<endl;
+    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
+
+    dados = strtok(NULL,", ");
+    cout<<dados<<endl;
+    rs = bin(getRegister(dados));
+
+    dados = strtok(NULL," ");
+    cout<<dados<<endl;
+    n = bin(atoi(dados));
+
+
+
+    //saida /*<< "rt: "*/<<r<<" ";
+    //saida /*<< "num: "*/<<n<<" ";
+
+    saida  <</*"rs:" <<*/setw(5)<<setfill('0') << rs <<"";
+    saida  <</*"rt:" <<*/setw(5)<<setfill('0') << rt <<"";
+    saida  <</*"n:"<<*/ setw(16)<<setfill('0') << n <<"";
 
     saida<<endl;
 }
@@ -162,11 +216,12 @@ void tipoJ(char *dados, int op){
     saida.open("saida.txt",fstream::app);
 
     //saida  /*<<"op: "*/<<bin(op) <<" ";
-    saida  << setw(6)<<setfill('0') << bin(op) <<" "; //GRAVA OP
+    saida  << setw(6)<<setfill('0') << bin(op) <<""; //GRAVA OP
 
     dados = strtok(NULL, " ");
 
-    saida << setw(26)<<setfill('0') << bin(atoi(dados)) <<" ";
+    saida << setw(26)<<setfill('0') << bin(atoi(dados)) <<"";
+    saida << endl;
 }
 
 void getOperation(char *dados)
@@ -239,42 +294,42 @@ void getOperation(char *dados)
     }
     else if(dados[0] == 'a' && dados[1] == 'd' && dados[2] == 'd' && dados[3] == 'i')  //ADDI
     {
-        tipoI(dados, 8);
+        tipoII(dados, 8);
         //return 8;   op(ADDI);
     }
     else if(dados[0] == 'a' && dados[1] == 'd' && dados[2] == 'd' && dados[3] == 'i' && dados[4] == 'u')  //ADDIU
     {
-        tipoI(dados, 9);
+        tipoII(dados, 9);
         //return 9;   op(ADDIU);
     }
     else if(dados[0] == 's' && dados[1] == 'l' && dados[2] == 't' && dados[3] == 'i')  //SLTI
     {
-        tipoI(dados, 10);
+        tipoII(dados, 10);
         //return 10;   op(SLTI);
     }
     else if(dados[0] == 's' && dados[1] == 'l' && dados[2] == 't' && dados[3] == 'i' && dados[4] == 'u')  //SLTIU
     {
-        tipoI(dados, 11);
+        tipoII(dados, 11);
         //return 11;   op(SLTIU);
     }
     else if(dados[0] == 'a' && dados[1] == 'n' && dados[2] == 'd' && dados[3] == 'i')  //ANDI
     {
-        tipoI(dados, 12);
+        tipoII(dados, 12);
         //return 12;   op(ANDI);
     }
     else if(dados[0] == 'o' && dados[1] == 'r' && dados[2] == 'i')  //ORI
     {
-        tipoI(dados, 13);
+        tipoII(dados, 13);
         //return 13;   op(ORI);
     }
     else if(dados[0] == 'x' && dados[1] == 'o' && dados[2] == 'r' && dados[3] == 'i')  //XORI
     {
-        tipoI(dados, 14);
+        tipoII(dados, 14);
         //return 14;   op(XORI);
     }
     else if(dados[0] == 'l' && dados[1] == 'u' && dados[2] == 'i')  //LUI
     {
-        tipoI(dados, 15);
+        tipoII(dados, 15);
         //return 15;   op(LUI);
     }
     else if(dados[0] == 'b' && dados[1] == 'l' && dados[2] == 't' && dados[3] == 'z')  //BLTZ
@@ -469,7 +524,7 @@ void getOperation(char *dados)
        *******************COMEÇANDO PROCURA POR COMANDOS DO TIPO 'J'********************
        *********************************************************************************
     */
-    else if(dados[0] == 'j' )  //J
+    else if(dados[0] == 'j' && dados[1] == NULL)  //J
     {
         tipoJ(dados, 2);
         //return 2;   op(J);
