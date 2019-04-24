@@ -1,5 +1,3 @@
-//Mateus Filipe De Lima Souza - BSI
-
 #include <iostream>
 #include <locale.h>
 #include <windows.h>
@@ -15,6 +13,13 @@ int TAM;
 using namespace std;
 
 /*
+
+    Aluno: Mateus Filipe de Lima Souza - 3º Período 2018;
+
+    O seguinte código converte instruçõe MIPS para binário;
+
+    obs: programa1.txt foi alterado para melhores testes;
+
     Formatos de comandos: R, I , J
     >>>R:
     *-----------------------------------------------------*
@@ -33,7 +38,6 @@ using namespace std;
     *-----------------------------------------------------*
 */
 
-
 void lerArquivo(char *nomeArquivo); //Executa a leitura do arquivo;
 void getOperation(char *dados); //Descobre o valor da função op;
 int getRegister(char *dados); //Descobre o valor do registrador, seja, rs, rt, rd;
@@ -42,7 +46,9 @@ void tipoII(char *dados, int op); //Exexuta a conversão e gravação em funções do
 void tipoR(char *dados); //Exexuta a conversão e gravação em funções do tipo R;
 void tipoJ(char *dados); //Exexuta a conversão e gravação em funções do tipo J;
 
-long long int bin(long long int k) //Converter número em binário;
+
+
+long long int bin(long long int k) //Função que onverte número em binário;
 {
     if ( k < 2 )
         return k;
@@ -85,37 +91,27 @@ void tipoR(char *dados, int op, int funct)
     ofstream saida;
     saida.open("saida.txt",fstream::app);
 
-    //saida  /*<<"op: "*/<<bin(op) <<" ";
     saida  << setw(6)<<setfill('0') << bin(op) <<""; //GRAVA OP
 
     dados = strtok(NULL,",");
     cout<<dados<<endl;
-    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
-    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
-    rt = bin(getRegister(dados));
+
+    rt = bin(getRegister(dados)); //Variável que armazena o valor de rt
 
     dados = strtok(NULL,", ,");
     cout<<dados<<endl;
-    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
-    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
-    rs = bin(getRegister(dados));
+    rs = bin(getRegister(dados)); //Variável que armazena o valor de rs
 
 
     dados = strtok(NULL,", , ,");
     cout<<dados<<endl;
-    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
 
-    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" "; //GRAVA R
-    rd = bin(getRegister(dados));
+    rd = bin(getRegister(dados)); //Variável que armazena o valor de rd
 
-    //saida /*<<"shamt: "*/<<bin(0)<<" ";
-    //saida  << setw(5)<<setfill('0') << bin(0)<<" "; //GRAVA SHAMT
-    shamt = bin(0);
+    shamt = bin(0); //Variável que armazena o valor de shamt
 
-    //saida /*<<"funct: "*/<<bin(funct)<<" ";
-    //saida  << setw(6)<<setfill('0') << bin(funct)<<" ";
-    funct1 = bin(funct);
+    funct1 = bin(funct); //Variável que armazena o valor de funct
 
     saida  << setw(5)<<setfill('0') << rs <<"";
     saida  << setw(5)<<setfill('0') << rt <<"";
@@ -132,9 +128,7 @@ void tipoRR(char *dados, int op, int funct)
     long long n, rt, rs;
     ofstream saida;
     saida.open("saida.txt",fstream::app);
-    saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< "";
-
-    //Escrevendo OP:
+    saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< ""; //Escreve OP:
 
     dados = strtok(NULL, ",");
     rt = bin(getRegister(dados));
@@ -148,13 +142,14 @@ void tipoRR(char *dados, int op, int funct)
     dados = strtok(NULL," ");
     cout<<dados<<endl;
     n = bin(atoi(dados));
+
     saida  << setw(5)<<setfill('0') <<"";
     saida  << setw(5)<<setfill('0') << rs <<"";
     saida  << setw(5)<<setfill('0') << rt <<"";
     saida  << setw(5)<<setfill('0') << n <<"";
     saida  << setw(6)<<setfill('0') <<"";
 
-
+    saida << endl;
 }
 
 void tipoI(char *dados, int op)
@@ -166,23 +161,21 @@ void tipoI(char *dados, int op)
 
     saida.open("saida.txt",fstream::app);
 
-    saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< "";
-    //Escrevendo OP:
+    saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< ""; //Escreva OP:
 
     dados = strtok(NULL, ",");
-    rt = bin(getRegister(dados));
-    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" ";
-
-    //cout<<dados<<endl;
-    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
+    rt = bin(getRegister(dados)); //Variável que armazena o valor de rt
 
     dados = strtok(NULL," (");
+
     cout<<dados<<endl;
-    n = bin(atoi(dados));
+
+    n = bin(atoi(dados)); //Variável que armazena o valor de num/immediate/address
+
 
     dados = strtok(NULL,")");
     cout<<dados<<endl;
-    rs = bin(getRegister(dados));
+    rs = bin(getRegister(dados)); //Variável que armazena o valor de rs
 
     //saida /*<< "rt: "*/<<r<<" ";
     //saida /*<< "num: "*/<<n<<" ";
@@ -206,19 +199,15 @@ void tipoII(char *dados, int op)
     saida  << setw(6)<<setfill('0')/*<<"op: "*/<<bin(op)<< "";
 
     dados = strtok(NULL, ",");
-    rt = bin(getRegister(dados));
-    //saida  << setw(5)<<setfill('0') << bin(getRegister(dados))<<" ";
-
-    //cout<<dados<<endl;
-    //saida /*<<"r: "*/<<bin(getRegister(dados))<<" ";
+    rt = bin(getRegister(dados)); //Variável que armazena o valor de rt
 
     dados = strtok(NULL,", ");
     cout<<dados<<endl;
-    rs = bin(getRegister(dados));
+    rs = bin(getRegister(dados)); //Variável que armazena o valor de rs
 
     dados = strtok(NULL," ");
     cout<<dados<<endl;
-    n = bin(atoi(dados));
+    n = bin(atoi(dados)); //Variável que armazena o valor de num/addres/immediate
 
 
 
@@ -247,7 +236,7 @@ void tipoJ(char *dados, int op)
     saida << endl;
 }
 
-void getOperation(char *dados)
+void getOperation(char *dados) // Incluindo todas as possibilidades de comandos
 {
     cout<<dados<<endl;
     /*
@@ -633,7 +622,6 @@ int getRegister(char *dados)
         {
             return 23;
         }
-
         else if(dados[2] == 'z')   //$szero
         {
             return 0;
