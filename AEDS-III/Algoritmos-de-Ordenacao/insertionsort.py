@@ -1,5 +1,5 @@
 #Mateus Filipe
-#Algoritmo de ordenação Shellsort
+#Algoritmo de ordenação Insertionsort
 
 def ordenar(vetor):
     n = len(vetor)
