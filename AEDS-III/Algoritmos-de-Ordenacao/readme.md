@@ -4,11 +4,17 @@
 Este repositório contém os seguintes metódos de ordenação:
 
 -Bubblesort: c++ e python
+
 -Combsort: c++
+
 -Heapsort: python
+
 -Insertionsort: c++ e python
+
 -Mergesort: c++ e python
+
 -Selectionsort: c++ e python
+
 -Shellsort: python
 
 Alguns foram vistos durante as aulas, outros foram implementados por conta própria e para serem utilizados em outras disciplinas.
@@ -20,11 +26,18 @@ Alguns foram vistos durante as aulas, outros foram implementados por conta próp
 This repository contain the following ordenations methods:
 
 -Bubblesort: c++ and python
+
 -Combsort: c++
+
 -Heapsort: python
+
 -Insertionsort: c++ and python
+
 -Mergesort: c++ and python
+
 -Selectionsort: c++ and python
+
 -Shellsort: python
+
 
 Some of them were made in classe, other made from my own and to be used in other works.
