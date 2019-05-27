@@ -1,23 +1,22 @@
 '''O seguinte código contém diversos métodos de ordenação
 BubbleSort, InsertSort, SelectSort, ShellSort, QuickSort,
 HeapSort e MergeSort.'''
+from random import randint
 
-def BubbleSort(vetor):
+def BubbleSort(vetor, n):
     auxiliar = 0
     troca = False
-    for i in range(6):
+    for i in range(n):
         troca = False
-        for j in range(1, 6-i):
-            if vetor[j-1] > vetor[j]:
-                auxiliar = vetor[j]
-                vetor[j] = vetor[j-1]
-                vetor[j-1] = auxiliar
+        for j in range(0, n-i-1):
+            if vetor[j] > vetor[j+1]:
+                vetor[j],vetor[j+1] = vetor[j+1],vetor[j]
                 troca = True
         if not troca:
             break
     #print(vetor)
 
-def InsertSort(vetor):
+def InsertSort(vetor, n):
     n = len(vetor)
     for i in range(n):
         key = vetor[i]
@@ -28,13 +27,13 @@ def InsertSort(vetor):
         vetor[j+1] = key
     #print(vetor)
 
-def SelectSort(vetor):
+def SelectSort(vetor, n):
     auxiliar = 0
     menor = 0
     troca = False
-    for i in range(6):
+    for i in range(n):
         menor = i
-        for j in range(i+1, 6):
+        for j in range(i+1, n):
             if vetor[j] < vetor[menor]:
                 menor = j
         aux = vetor[menor]
@@ -42,8 +41,7 @@ def SelectSort(vetor):
         vetor[i] = aux
     #print(vetor)
 
-def ShellSort(vetor):
-    n = len(vetor)
+def ShellSort(vetor, n):
     gap = n // 2
     while gap > 0:
         for i in range(gap,n):
@@ -110,8 +108,7 @@ def heapify(vetor, n, i):
         vetor[i], vetor[maior] = vetor[maior],vetor[i]
         heapify(vetor,n, maior)
 
-def heapsort(vetor):
-    n = len(vetor)
+def heapsort(vetor, n):
     for i in range(n, -1, -1):
         heapify(vetor, n, i)
     for i in range(n-1, 0, -1):
@@ -120,7 +117,7 @@ def heapsort(vetor):
     #print(vetor)
 '''Fim do HeapSort'''
 
-def MergeSort(vetor):
+def MergeSort(vetor, n):
     if len(vetor) > 1:
         meio = len(vetor) // 2
         L = vetor[:meio]
@@ -150,4 +147,18 @@ def MergeSort(vetor):
             j+=1
             k+=1
 
-def main():
+'''Here starts the main code: '''
+n = 10
+vetor = [n]
+for i in range(n):
+    vetor = randint(0,99)
+    print(vetor)
+
+BubbleSort(vetor, n)
+print(vetor)
+#InsertSort(vetor)
+#SelectSort(vetor)
+#ShellSort(vetor)
+#quicksort(vetor)
+#heapsort(vetor)
+#MergeSort(vetor)
