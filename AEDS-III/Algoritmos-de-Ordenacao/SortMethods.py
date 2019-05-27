@@ -17,7 +17,6 @@ def BubbleSort(vetor, n):
     #print(vetor)
 
 def InsertSort(vetor, n):
-    n = len(vetor)
     for i in range(n):
         key = vetor[i]
         j = i - 1
@@ -156,7 +155,7 @@ for i in range(n):
 
 BubbleSort(vetor, n)
 print(vetor)
-#InsertSort(vetor)
+InsertSort(vetor, n)
 #SelectSort(vetor)
 #ShellSort(vetor)
 #quicksort(vetor)
