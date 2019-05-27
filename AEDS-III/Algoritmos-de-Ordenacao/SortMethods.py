@@ -54,8 +54,8 @@ def ShellSort(vetor, n):
     #print(vetor)
 
 '''QuickSort: '''
-def quicksort(V):
-    quicksort2(V, 0, len(V) - 1)
+def quicksort(V, n):
+    quicksort2(V, 0, n - 1)
 
 
 def quicksort2(V, menor, maior):
@@ -122,8 +122,8 @@ def MergeSort(vetor, n):
         L = vetor[:meio]
         R = vetor[meio:]
 
-        MergeSort(L)
-        MergeSort(R)
+        MergeSort(L, meio)
+        MergeSort(R, meio)
 
         i = j = k = 0
 
@@ -147,17 +147,32 @@ def MergeSort(vetor, n):
             k+=1
 
 '''Here starts the main code: '''
-n = 10
+n = 60
 vetor = [n]
+vetor = []
 for i in range(n):
-    vetor = randint(0,99)
-    print(vetor)
+    a = randint(0,99)
+    vetor.append(a)
+
+print("Vetor Original:\n",vetor)
 
 BubbleSort(vetor, n)
-print(vetor)
+print("\nBubbleSort:\n",vetor)
+
 InsertSort(vetor, n)
-#SelectSort(vetor)
-#ShellSort(vetor)
-#quicksort(vetor)
-#heapsort(vetor)
-#MergeSort(vetor)
+print("\nInsertSort:\n",vetor)
+
+SelectSort(vetor,n)
+print("\nSelectSort:\n",vetor)
+
+ShellSort(vetor,n)
+print("\nShellSort:\n",vetor)
+
+quicksort(vetor,n)
+print("\nQuickSort:\n",vetor)
+
+heapsort(vetor,n)
+print("\nHeapSort:\n",vetor)
+
+MergeSort(vetor,n)
+print("\nMergeSort:\n",vetor)
