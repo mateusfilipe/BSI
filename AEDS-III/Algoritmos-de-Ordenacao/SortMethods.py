@@ -147,32 +147,32 @@ def MergeSort(vetor, n):
             k+=1
 
 '''Here starts the main code: '''
-n = 60
+n = 100
 vetor = [n]
 vetor = []
 for i in range(n):
-    a = randint(0,99)
+    a = randint(0,399)
     vetor.append(a)
 
 print("Vetor Original:\n",vetor)
 
-BubbleSort(vetor, n)
-print("\nBubbleSort:\n",vetor)
+#BubbleSort(vetor, n)
+#print("\nBubbleSort:\n",vetor)
 
-InsertSort(vetor, n)
-print("\nInsertSort:\n",vetor)
+#InsertSort(vetor, n)
+#print("\nInsertSort:\n",vetor)
 
-SelectSort(vetor,n)
-print("\nSelectSort:\n",vetor)
+#SelectSort(vetor,n)
+#print("\nSelectSort:\n",vetor)
 
-ShellSort(vetor,n)
-print("\nShellSort:\n",vetor)
+#ShellSort(vetor,n)
+#print("\nShellSort:\n",vetor)
 
-quicksort(vetor,n)
-print("\nQuickSort:\n",vetor)
+#quicksort(vetor,n)
+#print("\nQuickSort:\n",vetor)
 
-heapsort(vetor,n)
-print("\nHeapSort:\n",vetor)
+#heapsort(vetor,n)
+#print("\nHeapSort:\n",vetor)
 
-MergeSort(vetor,n)
-print("\nMergeSort:\n",vetor)
+#MergeSort(vetor,n)
+#print("\nMergeSort:\n",vetor)

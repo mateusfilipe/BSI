@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1558969021 source:e:\td\passeiodocavalo\main.cpp
+	<iostream>
+	<locale.h>
+	<windows.h>
+
+1559219012 source:f:\td\prova3-paa\passeiodocavalo\main.cpp
+	<iostream>
+	<locale.h>
+	<windows.h>
+
+1559221480 source:e:\td\prova3-paa\passeiodocavalo\main.cpp
+	<iostream>
+
