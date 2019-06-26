@@ -1,0 +1,6 @@
+lw $t0, 0($t7)
+addi $t1, $t7, 28
+lw $t1, 0($t1)
+addi $t1, $t1, 1
+sw $t1, 0($t2)
+sll $t0, $t0, 2
