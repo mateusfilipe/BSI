@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1561994194 source:e:\td\prova3-paa\multimatriz\main.cpp
+	<iostream>
+	<iomanip>
+	<stdlib.h>
+
