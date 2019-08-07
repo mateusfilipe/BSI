@@ -26,7 +26,7 @@ def ordenar(vetor):
     print(comp)
     print(mov)
 
-n = 1000000
+n = 10
 vetor = [n]
 vetor = []
 for i in range(n):
