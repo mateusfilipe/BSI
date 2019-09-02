@@ -111,4 +111,13 @@ public class Cliente {
     public void pedirCartao(Gerente gerenteResponsavel){
         gerenteResponsavel.inciairPedidoCartao(getSalario());
     }
+
+    /**
+     * Impressão dos dados relacionados cliente
+     * @return Dados do cliente
+     */
+    public String imprimirDados() {
+        return "\nNome = " + nome + "\nCPF = " + cpf + "\nSalário = " + salario + "\nProfissão = " + profissao + "\nGerente Responsável = " + gerenteResponsavel.getNome();
+    }
+    
 }

@@ -122,12 +122,19 @@ public class ContaBancaria {
     /**
      * Impressão dos dados de uma determianda conta;
      * @param conta - conta a ter os dados impressos
+     * @return dados da conta
      */
-    public void DadosDaConta(ContaBancaria conta){
-        System.out.println("Id: "+conta.getIdConta());
-        System.out.println("Conta criada em: "+conta.getDataCriacao().getData());
-        System.out.println("Conta valida até: "+conta.getValidade().getData());
-        System.out.println("Saldo atual: R$"+conta.getSaldo());
-        System.out.println(""+conta.getTipoConta());
+    public String DadosDaConta(ContaBancaria conta){
+        return "\nId = "+conta.getIdConta() + "\nConta criada em = "+conta.getDataCriacao().getData()+"\nConta valida até = "+conta.getValidade().getData()+"\nSaldo atual = R$"+conta.getSaldo()+"\nTipo de conta = "+conta.getTipoConta();
+
+    }
+    
+    /**
+     * Efetuar pagamento da fatura do cartão por meio de cobrança em cima da mesma conta
+     * @param cartao - cartão com a fatura a ser paga
+     * @param senha - senha da conta para liberação do pagamento
+     */
+    public void pagarCartao(Cartao cartao, int senha){
+        sacar(cartao.getFatura(),senha);
     }
 }

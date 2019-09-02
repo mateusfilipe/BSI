@@ -5,8 +5,6 @@
  */
 package banco;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Angela
@@ -98,8 +96,7 @@ public class Gerente {
      * @param clienteC - cliente que solicitou o cartão
      */
     private void liberarCartao(double salario){
-        System.out.println("Cartão emitido com sucesso, chegará em seu endereço dentro de 90 dias.");
-        System.out.println("Seu limite é de :"+ salario*1.5);
+        Cartao cartao = new Cartao(salario*1.5, new Data(2,9,2020), (null));
     }
     
     /**
@@ -113,4 +110,14 @@ public class Gerente {
             System.out.println("Emissão de cartão não autorizado.");
         }
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public String imprimirDados() {
+        return "\nNome = " + nome + "\nFunção = " + funcao + "\nNúmero de Clientes = " + numeroClientes + "\nCPF = " + cpf;
+    }
+    
+    
 }
