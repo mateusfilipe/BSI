@@ -67,36 +67,50 @@ public class Gerente {
      * Verificação da disposição do empréstimo, se um cliente é elegível para fazer empréstimo
      * @param clienteE - cliente solicitante
      * @param contaClienteE - conta do cliente solicitante
-     * @return TRUE caso seja elegível, FALSE caso não seja elegível
+     * @param valorEmprestimo - valor solicitado do empréstimo
      */
-    public boolean liberarEmprestimo(Cliente clienteE, ContaBancaria contaClienteE){
-        return clienteE.getSalario() >= 998 && contaClienteE.getSaldo() >= 1497 && clienteE.getProfissao() != null;
+    private void liberarEmprestimo(ContaBancaria contaCliente, int valorEmprestimo){
+        if(valorEmprestimo <= 10000){
+            contaCliente.depositar(valorEmprestimo);
+        }else{
+            contaCliente.depositar(valorEmprestimo);
+            contaCliente.sacar(valorEmprestimo/100, contaCliente.getSenha());
+        }
     }
     
     /**
      * Inciar pedido de empréstimo de um cliente
-     * @param cliente - cliente que está fazendo empréstimo
+     * @param salario - salário do cliente
      * @param contaCliente - conta do cliente que solicitou empréstimo
      * @param valorEmprestimo  - valor solicitado do empréstimo
      */
-    public void inciarPedidoEmprestimo(Cliente cliente, ContaBancaria contaCliente, int valorEmprestimo){
-        if(liberarEmprestimo(cliente, contaCliente)){    
-            if(valorEmprestimo <= 10000){
-                contaCliente.depositar(valorEmprestimo);
-            }else{
-                contaCliente.depositar(valorEmprestimo);
-                contaCliente.sacar(valorEmprestimo/100, contaCliente.getSenha());
-            }
+
+    public void inciarPedidoEmprestimo(double salario, ContaBancaria contaCliente, int valorEmprestimo){
+        if(salario >= 998){
+            liberarEmprestimo(contaCliente, valorEmprestimo);
+            System.out.println("Empréstimo autorizado.");
         }else{
-            System.out.println("Impréstimo não pode ser realizado, verificar na agência.");
+            System.out.println("Empréstimo não autorizado.");
         }
     }
-    
-    public boolean liberarCartao(Cliente clienteC){
-        return clienteC.getProfissao() != null && clienteC.getSalario() != 0;
+    /**
+     * Verificação caso o cliente seja elegível para receber o cartão
+     * @param clienteC - cliente que solicitou o cartão
+     */
+    private void liberarCartao(double salario){
+        System.out.println("Cartão emitido com sucesso, chegará em seu endereço dentro de 90 dias.");
+        System.out.println("Seu limite é de :"+ salario*1.5);
     }
     
-    public void inciairPedidoCartao(){
-        System.out.println("Toma um cartão");
+    /**
+     * Inicipar pedido do cartão soliciatdo pelo cliente
+     * @param salario - salario do cliente
+     */
+    public void inciairPedidoCartao(double salario){
+        if(salario >= 0){
+            liberarCartao(salario);
+        }else{
+            System.out.println("Emissão de cartão não autorizado.");
+        }
     }
 }

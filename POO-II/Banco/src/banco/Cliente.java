@@ -15,6 +15,7 @@ public class Cliente {
     private double salario;
     private String profissao;
     private int senha;
+    private Gerente gerenteResponsavel;
     
     /**
      * Construtor da classe Cliente
@@ -22,12 +23,14 @@ public class Cliente {
      * @param cpf - cpf do Cliente
      * @param salario - salario do cliente
      * @param profissao  - profissao do cliente
+     * @param gerenteResponsavel - gerente do cliente
      */
-    public Cliente(String nome, long cpf, double salario, String profissao) {
+    public Cliente(String nome, long cpf, double salario, String profissao, Gerente gerenteResponsavel) {
         this.nome = nome;
         this.cpf = cpf;
         this.salario = salario;
         this.profissao = profissao;
+        this.gerenteResponsavel = gerenteResponsavel;
     }
        
     public String getNome() {
@@ -61,7 +64,23 @@ public class Cliente {
     public void setProfissao(String profissao) {
         this.profissao = profissao;
     }
-    
+
+    public int getSenha() {
+        return senha;
+    }
+
+    public void setSenha(int senha) {
+        this.senha = senha;
+    }
+
+    public Gerente getGerenteResponsavel() {
+        return gerenteResponsavel;
+    }
+
+    public void setGerenteResponsavel(Gerente gerenteResponsavel) {
+        this.gerenteResponsavel = gerenteResponsavel;
+    }
+        
     /**
      * Atualização da senha, varíavel armazenanda na classe ContaBancaria
      * @param contaCliente - conta do cliente a ter a senha atualizada
@@ -75,13 +94,21 @@ public class Cliente {
             System.out.println("ERROR: Senha inválida.");
     }
     
-    public void inciarPedidoEmprestimo(ContaBancaria contaCliente, int valorEmprestimo){
-        if(valorEmprestimo <= 10000){
-            contaCliente.depositar(valorEmprestimo);
-        }else{
-            contaCliente.depositar(valorEmprestimo);
-            contaCliente.sacar(valorEmprestimo/100, senha);
-        }
+    /**
+     * Pedir empréstimo, cliente solicita empréstimo
+     * @param conta - conta do cliente a receber empréstimo
+     * @param gerenteResponsavel - gerente responsável pelo cliente
+     * @param valorEmprestimo - valor do empréstimo
+     */
+    public void pedirEmprestimo(ContaBancaria conta, Gerente gerenteResponsavel, int valorEmprestimo){
+        gerenteResponsavel.inciarPedidoEmprestimo(getSalario(), conta, valorEmprestimo);
     }
     
+    /**
+     * Pedir cartão, cliente solicita um cartão
+     * @param gerenteResponsavel - gerente reponsável pelo cliente
+     */
+    public void pedirCartao(Gerente gerenteResponsavel){
+        gerenteResponsavel.inciairPedidoCartao(getSalario());
+    }
 }

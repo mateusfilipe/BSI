@@ -97,7 +97,7 @@ public class ContaBancaria {
      * @param senha - senha da conta que será
      */
     public void sacar(double valorSacado, int senha){
-        if(senha != this.senha){
+        if(senha == this.senha){
             if(valorSacado <= this.saldo){
                 this.saldo -= valorSacado;
             }else{
