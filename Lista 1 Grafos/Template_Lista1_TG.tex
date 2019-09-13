@@ -1,0 +1,476 @@
+\documentclass[11pt,a4paper]{article}
+
+%------------------------Pacotes--------------------
+\usepackage{amsfonts, amsmath, amsthm, amssymb}
+\usepackage[brazil]{babel}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{ae}
+\usepackage{epsfig}
+\usepackage{color} 
+\usepackage{multicol}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyheadings}
+\usepackage{hyperref}
+\usepackage{tikz}
+
+%------------------------Definicoes--------------------
+\newtheorem{defn}{Defini\c c\~ao}
+\newtheorem{lema}{Lema}
+\newtheorem{obs}{Observa\c c\~ao}
+\newtheorem{teo}{Teorema}
+\newtheorem{cor}{Corol\'ario}
+
+%------------------------Margens--------------------
+\setlength{\textheight}{24.0cm}
+\setlength{\textwidth}{17.5cm}
+\setlength{\oddsidemargin}{2.0cm} 
+\setlength{\evensidemargin}{2.0cm} 
+\setlength{\topmargin}{1.5cm} 
+\setlength{\headheight}{1.6cm} 
+\setlength{\headsep}{1.0cm}
+\setlength{\columnsep}{1.5cm} 
+\addtolength{\oddsidemargin}{-1in}
+\addtolength{\evensidemargin}{-1in} \addtolength{\topmargin}{-1in}
+\setlength{\footskip}{0.0cm} \pagestyle{fancy}
+\lhead{\epsfig{file=if_simples,height=3.3cm}} %\rhead{\sc
+%IFMG \\}%\\
+\cfoot{}
+
+%------------------------Inicio Documento--------------------
+\begin{document}
+\Large
+\begin{center}
+
+\
+
+\
+
+Lista 1 - Teoria de Grafos
+\end{center}
+\large \noindent \textbf{Professor}: Carlos Alexandre Silva
+\normalsize \vspace{0.5cm}
+
+%---------------------------------------------------------
+
+\begin{large}
+	\textbf{Definições, Teoremas, Corolários, Observações, Lemas}
+\end{large}
+
+\vspace{0.5cm}
+
+\textbf{Variáveis}: $G$ é o grafo; $N$ é o conjunto de vértices do grafo; $M$ é o conjunto de arestas do grafo; $d(x_i)$ é o grau do vértice $x_i$. 
+
+\vspace{0.5cm}
+
+%----------------------------------------------------------
+
+\textcolor{red}{Tópico: Conceitos}
+
+\begin{obs}
+	Se todos os vértices de uma cadeia (ou passeio) forem distintos, a cadeia (ou passeio) será denominada \textbf{caminho}.
+\end{obs}
+
+\begin{obs}
+	Quando o grafo $G$ é \textbf{orientado}, a sequência de arcos distintos que repete somente o primeiro e o último nó visitado se chama \textbf{circuito}.
+\end{obs}
+
+\begin{defn}
+	A relação entre o número de arestas e vértices, muitas vezes denominado \textbf{densidade} de $G$, pode ser medida pela razão $\epsilon(G)$, tal que:
+	$$\epsilon(G)=\dfrac{|M|}{|N|}=\dfrac{1}{2}d_M(G),$$
+	onde $d_M(G)$ é denominada \textbf{média dos graus de $G$} e pode ser obtida por:
+	$$d_M(G)=\dfrac{1}{|N|}=\sum\limits_{x_i \in N}d(x_i)$$
+\end{defn}
+
+\begin{lema}
+	O somatório dos graus dos vértices de um grafo é igual a $2m$, onde $m$ representa o número de arestas do grafo.
+\end{lema}
+
+\begin{defn}
+	Um grafo $G$ é dito par se \textbf{todos os seus vértices possuírem grau par}. 
+\end{defn}
+
+\begin{obs}
+	Um grafo com todos os vértices possuindo grau ímpar \textbf{não é um grafo ímpar}.
+\end{obs}
+
+\begin{obs}
+	\textbf{Maximal} deve ser distinto de \textbf{máximo}. \textbf{ Maximal} é condição de pertinência.
+\end{obs}
+
+\begin{obs}
+	\textbf{Grafos conexos} possuem apenas uma \textbf{componente conexa}.
+\end{obs}
+
+\begin{defn}
+	O \emph{rank} ``r'', ou \textbf{posto}, de um grafo  $G$ com $n$ vértices e $c$ componentes conexas é dado por:
+	$$r=n-c$$
+\end{defn}
+
+\begin{defn}
+	\textbf{Nulidade} $L$ de um grafo $G$ com $m$ arestas, $n$ vértices e $c$ componentes conexas, é definida como:
+	$$L=m-n+c=m-r$$
+\end{defn}
+
+\begin{teo}
+	Um grafo $G$ bipartido se e somente se todo ciclo em $G$ for par.
+\end{teo}
+
+\begin{teo}
+	O número de arestas em um grafo completo $G=(N,M)$ é
+	$$\dfrac{n(n-1)}{2},$$
+	onde $n=|N|$
+\end{teo}
+
+\begin{obs}
+	Um grafo regular com grau \textbf{três} é denominado \textbf{cúbico}. Um grafo com grau \textbf{quatro} é denominado \textbf{quartic}.
+\end{obs}
+
+\begin{teo}
+	O número de vértices de grau ímpar de um grafo é sempre par.
+\end{teo}
+
+\begin{teo}[Teorema de Euler]
+	$$n+f-m=2,$$
+	onde $n=|N|,~m=|M|$ e $f$ denota o número de regiões.
+\end{teo}
+
+\begin{cor}[Corolário do Teorema de Euler]
+	$$m \le 3n-6,$$
+	onde $n=|N|$ e $m=|M|$.
+\end{cor}
+
+\begin{defn}
+	Um grafo $H$ é chamado \textbf{minor} - ou \textbf{menor} - de um grafo $G$ se $H$ é isomorfo a um grafo que pode ser obtido por uma sequência finita de \textbf{contrações de arestas} de $G$.
+\end{defn}
+
+\begin{teo}
+	Um grafo $G$ é planar se e somente se não possui $K_5$ ou ao $K_{3,3}$ como minor.
+\end{teo}
+
+\begin{obs}
+	A adição de arestas é também denominada de \textbf{join}.
+\end{obs}
+
+\begin{obs}
+	A \textbf{matriz de adjacência} ocupa $O(n^2)$ posições de memória.
+\end{obs}
+
+\begin{obs}
+	A \textbf{matriz de incidência} ocupa $O(nm)$ posições de memória.
+\end{obs}
+
+\begin{obs}
+	A \textbf{lista de adjacência} ocupa $O(n+m)$ posições de memória.
+\end{obs}
+
+\begin{obs}
+	A \textbf{representação vetorial} ocupa $O(m+n)$ posições de memória.
+\end{obs}
+
+%----------------------------------------------------------
+
+\textcolor{red}{Tópico: Árvores}
+
+\begin{teo}
+	Em um grafo $G$ o número de subgrafos árvores com $n$ vértices e com grau especificado $k$, é igual a:
+	$$n(T^k)={n-2\choose k-1}(n-1)^{n-k-1}$$
+\end{teo}
+
+\begin{teo}[Fórmula de Caley]
+	O número de árvores distintas em um grafo completo com $n$ vértices é $n^{n-2}$.
+\end{teo}
+
+\begin{obs}
+	Todo grafo conexo possui \textbf{pelo menos uma árvore geradora}.
+\end{obs}
+
+\begin{defn}
+	Uma floresta é \textbf{um conjunto de árvores} sem vértices em comum. \\
+	Uma floresta geradora é uma floresta que contém \textbf{todos os vértices} de $G$.
+\end{defn}
+
+\begin{obs}
+	A determinação das árvores geradoras mínima ou máxima pode ser feita em tempo polinomial.
+\end{obs}
+
+\begin{obs}
+	O número de vértices em uma \textbf{árvore binária cheia é $2^{h+1}-1$}, onde $h$ é altura da árvore.
+\end{obs}
+
+\newcounter{exercicios}
+\begin{list}{\arabic{exercicios}.}{%
+\usecounter{exercicios}%
+\setlength{\leftmargin}{0cm}}
+
+\newpage
+
+%----------------------------------------------------------
+
+\item[] \textbf{EXERCÍCIOS}
+
+%----------------Questão 1---------------------------------
+\item Considerando grafos não-direcionados, defina e dê exemplos de:
+\begin{multicols}{3}
+	\item[a)] Grafo: Estrutura abstrata que representa um conjunto de elementos denominados vértices e suas relações de interdependência ou arestas. Matematicamente um grafo G\\\\
+	\begin{tikzpicture}
+	[scale=.4,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (n1) at (3,9)  {1};
+	\node (n4) at (7,8)  {4};
+	\node (n3) at (8,5)  {3};
+	\node (n2) at (3,5)  {2};
+	
+	\foreach \from/\to in {n1/n2,n1/n3,n1/n4,n2/n3,n3/n4}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+	\item[b)] Multigrafo: Grafo não-direcionado que possui no mínimo duas arestas paralelas. Um grafo direcionado que possui dois ou mais arcos de mesma direção ligando a um mesmo par de vértices.
+	\begin{tikzpicture}
+	[scale=.4,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (n1) at (3,9)  {1};
+	\node (n4) at (7,8)  {4};
+	\node (n3) at (8,5)  {3};
+	\node (n2) at (3,5)  {2};
+	
+	\foreach \from/\to in {n1/n2, n2/n1,n1/n3,n1/n4,n2/n3,n3/n4}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+	\\\item[c)] Ordem de um grafo: Quantidade de vértices presentes em um grafo. Exemplo K${_1}$:\\
+	\begin{tikzpicture}
+	[scale=.4,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (n1) at (5,2)  {1};
+	
+	\foreach \from/\to in {n1}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+	\item[d)] Grafo completo: Se existe uma aresta associada a cada par de vértices de G.\\\\
+	\begin{tikzpicture}
+	[scale=.4,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (n1) at (5,5)  {1};
+	\node (n2) at (5,2)  {2};
+
+	\foreach \from/\to in {n1/n2}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+	\item[e)] Clique: Um grafo clique de um grafo G é um subgrafo completo de G.\\\\
+	\begin{tikzpicture}
+	[scale=.4,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (n1) at (4,3)  {1};
+	\node (n2) at (3,1)  {2};
+	\node (n3) at (5,1)  {3};
+	
+	\foreach \from/\to in {n1/n2, n1/n3, n2/n3}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+	\item[f)] Grafo conexo: Um grafo é conexo se para todo par de vértices existe pelo menos um caminho entre eles.\\\\
+	\begin{tikzpicture}
+	[scale=.4,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (n1) at (6,3)  {1};
+	\node (n2) at (5,5)  {2};
+	\node (n3) at (6,7)  {3};
+	
+	\foreach \from/\to in {n1/n2, n1/n3, n2/n3}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+	\item[g)] Árvore: Tem de ser conexo e não possui ciclos, ou seja, não possui caminhos fechados. Em uma árvore, um vértice com grau 1 é denominado folha ou vértice terminal.\\\\
+	\begin{tikzpicture}
+	[scale=.4,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (n1) at (5,5)  {1};
+	\node (n2) at (8,5)  {2};
+	\node (n3) at (6,3)  {3};
+	\node (n4) at (10,4) {4};
+	
+	\foreach \from/\to in {n1/n2, n2/n4, n1/n3}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+	\item[h)] Árvore geradora: Uma árvore geradora de um grafo G é um subgrafo gerador acíclico. Todo grafo conexo possui pelo menos 1 árvore geradora.\\\\
+	\begin{tikzpicture}
+	[scale=.4,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (n1) at (3,9)  {1};
+	\node (n4) at (7,8)  {4};
+	\node (n3) at (8,5)  {3};
+	\node (n2) at (3,5)  {2};
+	
+	\foreach \from/\to in {n1/n2,n1/n3,n1/n4}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+\end{multicols}
+
+%----------------Questão 2---------------------------------
+\item Marque \textbf{V} ou \textbf{F} e justifique sua resposta:
+\begin{itemize}
+	\item[(~\textbf{V}~)] Todo grafo conexo possui pelo menos uma subárvore que contém todos os seus vértices.
+	\item[(~\textbf{V}~)] Seja $G=(N,A)$ e $|N|=n$. Se $G$ for completo e $n=5$, então certamente existem $125$ árvores distintas em $G$.
+	\item[(~\textbf{F}~)] Uma \emph{minimum spanning tree} de um grafo $G$ é a árvore geradora de maior custo dentre todas as possíveis em $G$.
+	\item[(~\textbf{F}~)] Seja $G_1=(N_1,A_1)$ e $G_2=(N_2,A_2)$ com $|A_1|=m_1, |N_1|=n_1$ e $|A_2|=3m_1, |N_2|=n_2$. Considerando $N_1=\{ a_1,a_2,\ldots, a_{n_1} \}$ e $N_2=\{ b_1,b_2,\ldots, b_{n_2} \}$, então é correto afirmar que $\sum\limits_{i=1}^{n_1}{d(a_i)}+\sum\limits_{i=1}^{n_2}{d(b_i)}=8m_1$.
+\end{itemize}
+\newpage
+
+%----------------Questão 3---------------------------------
+\item Aplique a \textbf{busca em largura} e \textbf{busca em profundidade} no grafo abaixo. Para cada busca enumere a ordem de busca de cada aresta do grafo. O vértice inicial é o vértice \textbf{S}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[height=5.3cm,width=10cm]{busca}
+	\end{center}
+\end{figure}
+\begin{multicols}{4}
+	\textbf{Profundidade:}\\
+	\begin{tikzpicture}
+	[scale=.6,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (s)  at (3,15)  {S};
+	\node (n1) at (3,13)  {1};
+	\node (n2) at (3,11)  {2};
+	\node (n3) at (3,9)   {3};
+	\node (n4) at (5,9)   {4};
+	\node (n5) at (5,7)   {5};
+	\node (n6) at (5,5)   {6};
+	\node (n7) at (7,5)   {7};
+	
+	\foreach \from/\to in {s/n1,n1/n2,n2/n3,n2/n4,n4/n5,n5/n6,n5/n7}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+	\textbf{Largura:}\\
+	\begin{tikzpicture}
+	[scale=.6,auto=left,every node/.style={circle,fill=blue!20}]
+	
+	\node (s)  at (10,10)  {S};
+	\node (n1) at (8,8)  {1};
+	\node (n2) at (6,6)  {2};
+	\node (n3) at (4,4)   {3};
+	\node (n4) at (8,4)   {4};
+	\node (n5) at (10,6)   {5};
+	\node (n6) at (6,2)   {6};
+	\node (n7) at (12,8)   {7};
+	
+	
+	\foreach \from/\to in {s/n1, s/n7, n1/n2, n1/n5, n2/n3, n2/n4, n4/n6}
+	\draw (\from) -- (\to);
+	\end{tikzpicture}
+\end{multicols}
+
+
+%----------------Questão 4---------------------------------
+\item Prove que o somatório dos graus dos vértices de um grafo simples que possui $n$ vértices e $m$ arestas é igual a $2m$.\\
+\textbf{\textit{R:}} Cada aresta possui pelo menos 2 vértices, um do qual ela parte e outro no qual ela chega, ou seja, sempre temos 2 vértices o de saída e o de chegada; tendo assim 2m.
+
+%----------------Questão 5---------------------------------
+\item Prove que um grafo com $n$ vértices não é bipartido se ele possuir um número de arestas maior que $\dfrac{n^2}{4}$.
+
+\newpage
+
+%----------------Questão 6---------------------------------
+\item Se existem nove times de futebol em uma liga, é possível programar um torneio em que cada time jogue com exatamente três outros times?
+
+%----------------Questão 7---------------------------------
+\item Escreva $V$ no caso de a alternativa ser verdadeira e $F$ em caso contrário: 
+\item[] Um caminho segundo a Teoria dos Grafos é:
+\begin{itemize}
+	\item[(~~~)] qualquer conexão entre dois vértices. 
+	\item[(~~~)] uma sequência de arestas contínua sem vértices repetidos. 
+	\item[(~~~)] uma sequência de arestas sem repetição de arestas ou vértices. 
+	\item[(~~~)] qualquer sequência de arestas, desde que seja aberta. 
+\end{itemize}
+
+\item[] Um grafo é conexo se:
+\begin{itemize}
+	\item[(~~~)] para qualquer vértice pertencente ao grafo sempre for possível encontrar um caminho até outro vértice distinto e também pertencente ao grafo. 
+	\item[(~~~)] para qualquer vértice do grafo sempre é possível encontrar um ciclo. 
+	\item[(~~~)] o grafo for simples e o número de arestas for igual a pelo menos $n+1$. 
+	\item[(~~~)] o menor grau dos vértices do grafo for dois. 
+\end{itemize}
+
+\item[] Um grafo será planar se:
+\begin{itemize}
+	\item[(~~~)] não contiver como subgrafo um $K_5$ ou um $K_{3,3}$. 
+	\item[(~~~)] o grau máximo de seus vértices for 3. 
+	\item[(~~~)] for um subgrafo do grafo de Petersen. 
+\end{itemize}
+
+\item[] De forma geral
+\begin{itemize}
+	\item[(~~~)] o número de vértices de um grafo com todos os vértices com grau ímpar é sempre par. 
+	\item[(~~~)] é impossível existir um grafo com um número par de vértices com grau par se nesse grafo existirem dois vértices com grau ímpar. 
+	\item[(~~~)] um grafo desconexo deve possuir pelo menos duas cinturas. 
+	\item[(~~~)] um grafo desconexo não possui cintura. 
+\end{itemize}
+
+%----------------Questão 8---------------------------------
+\item Prove a seguinte afirmação (teorema): ``O número de vértices de graus ímpar em um grafo é sempre par''
+
+%----------------Questão 9---------------------------------
+\item Considerem que existam 3 casas e que cada uma delas precisa ser ligada ao sistema de eletricidade, gás e água. Por questões de segurança,deseja-se saber se é possível fazer as ligações sem que haja cruzamento das tubulações. Represente este problema através de um grafo. Comente sua resposta.
+
+%----------------Questão 10---------------------------------
+\item O grafo de interseção de uma coleção de conjuntos $A_1,A_2,\ldots,A_n$ é o grafo que tem um vértice para cada um dos conjuntos da coleção e tem uma aresta conectando os vértices se esses conjuntos têm uma interseção não vazia. Construa o grafo de interseção para as seguintes coleções de conjuntos. Considere $A_1=\{ 0,2,4,6,8 \}$, $A_2=\{ 0,1,2,3,4 \}$, $A_3=\{ 1,3,5,7,9 \}$, $A_4=\{ 5,6,7,8,9 \}$ e $A_5=\{ 0,1,8,9 \}.$
+
+%----------------Questão 11---------------------------------
+\item Pode haver um grafo simples com 15 vértices, cada um com grau 5?
+
+\newpage
+
+%----------------Questão 12---------------------------------
+\item Aplique os algoritmos de Prim e Kruskal para determinar a AGM (Árvore Geradora Mínima) dos grafos abaixo: \\
+
+\begin{itemize}
+	\item[a)] 
+	\item[]
+	\begin{figure}[!htb]
+		\includegraphics[height=5cm,width=10cm]{Grafo01.png}
+	\end{figure}
+	\begin{figure}[!htb]
+		\textbf{Prim:}\\
+		\includegraphics[height=5cm,width=10cm]{Grafo01prim.png}
+	\end{figure}
+
+	\begin{figure}[!htb]
+	\textbf{Kruskal:}\\
+		\includegraphics[height=5cm,width=10cm]{Grafo01krusk.png}
+	\end{figure}
+    \item[b)] 
+    \item[]
+    \begin{figure}[!htb]
+	    \includegraphics[height=5cm,width=10cm]{Grafo02.png}
+    \end{figure} 
+\end{itemize}
+
+%----------------Questão 13---------------------------------
+\item Implemente os algoritmos de Prim e Kruskal disponíveis em:
+ 
+\vspace{0.5cm}
+\url{https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/}
+\vspace{0.5cm}
+
+\url{https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/}
+\vspace{0.5cm}
+
+Escolha a linguagem que for melhor para você e teste os algoritmos nos exemplos a) e b) do exercício anterior. Não faça o teste \emph{online}, pegue o código na página e compile/execute em seu computador.
+
+\newpage
+
+%----------------Exemplo de grafo---------------------------------
+\textbf{Exemplo de Grafo usando pacote tikz}
+
+\begin{tikzpicture}
+[scale=.8,auto=left,every node/.style={circle,fill=blue!20}]
+
+\node (n1) at (10,9)  {1};
+\node (n4) at (4,8)  {4};
+\node (n2) at (9,5) {2};
+\node (n5) at (6,9)  {5};
+\node (n3) at (5,5)  {3};
+
+\foreach \from/\to in {n4/n5,n5/n1,n1/n2,n2/n5,n2/n3,n3/n4}
+\draw (\from) -- (\to);
+\end{tikzpicture}
+
+\end{list}
+\end{document}
