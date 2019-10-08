@@ -10,12 +10,14 @@ package empresa;
  * @author aluno
  */
 public class FuncionarioAssaComi extends Funcionario {
+    private String nome;
+    private String cpf;
     private double SalarioFinal = 0;
     private final int numeroVendas;
     private static double porcentagemSobVenda;
 
-    public FuncionarioAssaComi(double SalarioFixo, int numeroVendas, double porcentagemSobVenda) {
-        super(SalarioFixo + (SalarioFixo/10));
+    public FuncionarioAssaComi(String nome, String cpf,double SalarioFixo, int numeroVendas, double porcentagemSobVenda) {
+        super(nome, cpf,SalarioFixo + (SalarioFixo/10));
         this.numeroVendas = numeroVendas;
         FuncionarioAssaComi.porcentagemSobVenda = porcentagemSobVenda;
     }
@@ -29,11 +31,18 @@ public class FuncionarioAssaComi extends Funcionario {
     }
     
     public void calcularSalarioFinal(){
-        SalarioFinal = SalarioFixo + (numeroVendas * porcentagemSobVenda);
+        SalarioFinal = SalarioFixo + ( numeroVendas  * porcentagemSobVenda);
     }
     
     public double getSalarioFinal(){
         return SalarioFinal;
     }
-
+    
+    
+    @Override
+    public void imprimirDados(){
+        super.imprimirDados();
+        System.out.println("Cargo: Assalariado/Comissionado\n"+
+                           "Salário Líquido: "+SalarioFinal+"\n");
+    }
 }

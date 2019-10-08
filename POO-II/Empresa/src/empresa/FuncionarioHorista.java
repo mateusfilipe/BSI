@@ -10,18 +10,20 @@ package empresa;
  * @author aluno
  */
 public class FuncionarioHorista extends Funcionario {
+    private String nome;
+    private String cpf;
     private double SalarioFinal;
     private double SalarioFixoHorista;
     private double horasTrabalhadas;
-    private double horasExtra;
+    private double valorHorasExtra;
 
-    public FuncionarioHorista(double SalarioFixoHorista, double horasTrabalhadas, double SalarioFixo) {
-        super(SalarioFixoHorista);
+    public FuncionarioHorista(String nome, String cpf, double SalarioFixoHorista, double horasTrabalhadas) {
+        super(nome, cpf, SalarioFixoHorista);
         this.horasTrabalhadas = horasTrabalhadas;
-        if(horasTrabalhadas > 40)
-            this.horasExtra = SalarioFixoHorista * 1.5;
+        if(horasTrabalhadas <= 40)
+            this.valorHorasExtra = 0;
         else
-            this.horasExtra = 0;
+            this.valorHorasExtra = SalarioFixoHorista * 1.5;
         SalarioFinal = 0;
     }
 
@@ -41,21 +43,31 @@ public class FuncionarioHorista extends Funcionario {
         this.horasTrabalhadas = horasTrabalhadas;
     }
 
-    public double getHorasExtra() {
-        return horasExtra;
+    public double getValorHorasExtra() {
+        return valorHorasExtra;
     }
 
-    public void setHorasExtra(double horasExtra) {
-        this.horasExtra = horasExtra;
+    public void setValorHorasExtra(double valorHorasExtra) {
+        this.valorHorasExtra = valorHorasExtra;
     }
     
     public void calcularSalarioFinal(){
-        
-        SalarioFinal = SalarioFixoHorista + (SalarioFixoHorista*horasTrabalhadas) + horasExtra;
+        SalarioFinal = (SalarioFixoHorista*horasTrabalhadas);
+        if(horasTrabalhadas > 40)
+            SalarioFinal += (valorHorasExtra * (horasTrabalhadas - 40));
     }
     
     public double getSalarioFinal(){
         return SalarioFinal;
     }
     
+    
+    @Override
+    public void imprimirDados(){
+        super.imprimirDados(); 
+        System.out.println("Cargo: Horista\n"+
+                           "Salário Líquido: "+SalarioFinal+"\n"+
+                           "Horas Extras: " + (horasTrabalhadas - 40)+"\n");
+    }
 }
+

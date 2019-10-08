@@ -10,12 +10,14 @@ package empresa;
  * @author aluno
  */
 public class FuncionarioComissionado extends Funcionario {
+    private String nome;
+    private String cpf;
     private double SalarioFinal = 0;
     private final int numeroVendas;
     private static double porcentagemSobVenda;
     
-    public FuncionarioComissionado(double SalarioFixo, int numeroVendas, double porcentagemSobVenda) {
-        super(0);
+    public FuncionarioComissionado(String nome, String cpf, double SalarioFixo, int numeroVendas, double porcentagemSobVenda) {
+        super(nome,cpf,0);
         this.numeroVendas = numeroVendas;
         FuncionarioComissionado.porcentagemSobVenda = porcentagemSobVenda;
     }
@@ -37,5 +39,11 @@ public class FuncionarioComissionado extends Funcionario {
     }
     
     
+    @Override
+    public void imprimirDados(){
+        super.imprimirDados();
+        System.out.println("Cargo: Comissionado\n"+
+                           "Salário Líquido: "+SalarioFinal+"\n");
+    }
     
 }

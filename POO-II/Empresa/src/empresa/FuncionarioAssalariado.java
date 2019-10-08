@@ -10,18 +10,21 @@ package empresa;
  * @author aluno
  */
 public class FuncionarioAssalariado extends Funcionario {
+    private String nome;
+    private String cpf;
     final double SalarioFixoAssalariado = 0;
-    public FuncionarioAssalariado(double SalarioFixoAsslariado) {
-        super(SalarioFixoAsslariado);
+    public FuncionarioAssalariado(String nome, String cpf, double SalarioFixoAssalariado) {
+        super(nome, cpf,SalarioFixoAssalariado);
     }
-
-    public double getSalarioFixoAssalariado() {
-        return SalarioFixoAssalariado;
-    }
-
+    
     @Override
     public double getSalarioFixo() {
         return SalarioFixo;
     }
     
+    @Override
+    public void imprimirDados(){
+        super.imprimirDados();
+        System.out.println("Cargo: Assalariado\n");
+    }
 }
