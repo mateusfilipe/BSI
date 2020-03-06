@@ -77,7 +77,8 @@ deterministic
 	return somatorio/tamanho;
 end $$
 delimiter ;
-#select mediaProjeto(10,5)
+
+select mediaProjeto(10,5);
 
 delimiter $$
 create procedure horasMedia (cpf char(11))
@@ -97,9 +98,9 @@ call horasMedia('12345678966');
 
 #6. Considerando que a empresa gasta 200 reais por dependente, criar uma function que retorne o total 
 #de gasto da empresa para um determinado funcionário em dependentes.
+#drop function gastoDependente;
 delimiter $$
 create function gastoDependente(cpf char(11)) returns int
-deterministic
 	return (select count(*) from dependente d where cpf = d.fcpf)*200;
 end $$
 delimiter ;

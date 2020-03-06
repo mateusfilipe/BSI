@@ -1,4 +1,4 @@
-drop database companhia;
+#drop database companhia;
 create database  if not exists  Companhia;
 use Companhia; 
 CREATE TABLE if not exists FUNCIONARIO
