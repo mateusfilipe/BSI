@@ -54,12 +54,11 @@ delimiter ;
 
 set @valor = 5;
 call teste4 (@valor);
-set @teste = concat(@valor,' ao quadrado');
-select @valor as @teste;
+select @valor as 'valor';
 
 
 
-drop procedure teste5;
+#drop procedure teste5;
 delimiter $$
 create procedure teste5 ()
 begin
@@ -87,14 +86,14 @@ delimiter ;
 call teste6(0);
 
 
-drop procedure teste77;
+#drop procedure teste77;
 delimiter $$
 create procedure teste77(in a int, in b int)
 begin
 	if a > b then
-		select concat(a," maior que ",b);
+		select concat(a," maior que ",b) as 'A > B';
 	elseif a < b then
-		select concat(b," maior que ",a);
+		select concat(b," maior que ",a) as 'B > A';
 	else select "números iguais";
     end if;
 end $$
@@ -122,8 +121,7 @@ delimiter $$
 create procedure teste8()
 begin
 	declare str varchar (255) default '';
-    declare x int default 0;
-    set x = 1;
+    declare x int default 1;
     while x <= 5 do
 		set  str = concat(str,x,',');
         set x = x + 1;
