@@ -35,21 +35,28 @@ begin
 end $$
 delimiter ;
 
+call inserirProjeto('Projeto Tal e tals', 3377, 'Rua dos Bobos',5);
+
 #Inserir em Dependente
 delimiter $$
 create procedure inserirDependente(in fcpf varchar(11), in nome_dependente varchar(15), in sexo char, in dataNasc char(10), in parentesco varchar(8))
 begin
-	insert Projeto values (fcpf, nome_dependente, sexo, dataNasc, parentesco);
+	insert Dependente values (fcpf, nome_dependente, sexo, dataNasc, parentesco);
 end $$
 delimiter ;
+select * from dependente;
+call inserirDependente('33344555587', 'Maria', 'F', '02-02-2002', 'filha' );
+
 
 #Inserir em Trabalha_Em
 delimiter $$
 create procedure inserirTrabalha_em(in fcpf varchar(11), in pnr int, in horas decimal(3,1))
 begin
-	insert Projeto values (fcpf, pnr, horas);
+	insert Trabalha_em values (fcpf, pnr, horas);
 end $$
 delimiter ;
+select * from Trabalha_em;
+call inserirTrabalha_em('12345678966', 3, 20.3);
 
 #4. Criar uma store procedure que receba o cpf do funcionário e uma variável de opcão.
 delimiter $$
