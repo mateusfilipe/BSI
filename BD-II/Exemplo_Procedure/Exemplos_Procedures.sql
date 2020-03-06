@@ -15,17 +15,21 @@ create table table2(
     tipo int
 );
 
+#POVOANDO TABLE 1
 insert into table1 values (3000,1);
 insert into table1 values (4000,1);
 insert into table1 values (3000,2);
 
+#POVOANDO TABELA 2
 insert into table2 values (0,1);
 
+#POVOANDO TABELA 1
 insert into tabela1 values(3);
 insert into tabela1 values(7);
 insert into tabela1 values(1);
 insert into tabela1 values(-2);
 
+#===========================TESTE 02===========================#
 delimiter $$
 create procedure teste2 (in quantidade int )
 begin 
@@ -35,6 +39,7 @@ delimiter ;
 
 call teste2(2);
 
+#===========================TESTE 03===========================#
 delimiter $$
 create procedure teste3 (out quantidade int)
 begin
@@ -45,6 +50,7 @@ delimiter ;
 call teste3(@quantidade);
 select @quantidade;
 
+#===========================TESTE 04===========================#
 delimiter $$
 create procedure teste4 (inout numero int)
 begin
@@ -56,8 +62,7 @@ set @valor = 5;
 call teste4 (@valor);
 select @valor as 'valor';
 
-
-
+#===========================TESTE 05===========================#
 #drop procedure teste5;
 delimiter $$
 create procedure teste5 ()
@@ -72,6 +77,8 @@ delimiter ;
 
 call teste5();
 
+#===========================TESTE 06===========================#
+# if: Comparação
 delimiter $$
 create procedure teste6(in a int)
 begin
@@ -85,7 +92,9 @@ delimiter ;
 
 call teste6(0);
 
-
+#===========================TESTE 07===========================#
+# if, elseif, else: Comparações normais
+# PRIMEIRA VERSÃO: Adicionando variáveis na seleção.
 #drop procedure teste77;
 delimiter $$
 create procedure teste77(in a int, in b int)
@@ -101,7 +110,7 @@ delimiter ;
 
 call teste77 (2,1);
 
-
+# SEGUNDA VERSÃO: Sem adição de variáveis
 delimiter $$
 create procedure teste7(in a int, in b int)
 begin
@@ -117,6 +126,8 @@ delimiter ;
 
 call teste7 (2,3);
 
+#===========================TESTE 08===========================#
+# while: repetição padrão com critério de parada
 delimiter $$
 create procedure teste8()
 begin
@@ -132,6 +143,8 @@ delimiter ;
 
 call teste8();
 
+#===========================TESTE 09===========================#
+# repeat: repetição semelhante ao "do-while"
 delimiter $$
 create procedure teste9()
 begin
@@ -147,6 +160,8 @@ end $$
 delimiter ;
 call teste9();
 
+#===========================TESTE 10===========================#
+# Loop_label: repetição não recomendada
 delimiter $$
 create procedure teste10()
 begin
@@ -164,6 +179,9 @@ end $$
 delimiter ;
 
 call teste10();
+
+#===========================TESTE 11===========================#
+# Criando função pra elever ao quadrado
 delimiter $$
 create function quadrado(numero int) returns int
 deterministic
