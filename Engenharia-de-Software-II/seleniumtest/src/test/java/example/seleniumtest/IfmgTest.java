@@ -48,6 +48,7 @@ public class IfmgTest {
 	    															.toLowerCase()
 	    															.startsWith("busca — instituto federal de educação, ciência e tecnologia de minas gerais campus sabará"));
 	}
+	
 	//Dúvida
 	//TODO Verificar pesquisa por linha.
 	@Test
@@ -55,22 +56,23 @@ public class IfmgTest {
 		// instrui o driver para "navegar" pelo Google
 		driver.navigate().to("https://www.ifmg.edu.br/sabara");
 
-		// obtém um campo de entrada de dados, de nome "SearchableText"
+		// obtém um campo de entrada de dados, de nome "search-results"
 		WebElement element = driver.findElement(By.name("SearchableText"));
 
 		// pesquisando pelo nome do professor "Carlos Alberto"
 		element.sendKeys("Carlos Alberto");
 
 		element.sendKeys(Keys.ENTER);
-		
+		//search-results
 		WebDriverWait wait = new WebDriverWait(driver,10);
-	    wait.until(ExpectedConditions.urlToBe("https://www.ifmg.edu.br/sabara/@@busca?SearchableText=Carlos+Alberto"));
+	    wait.until(ExpectedConditions.titleContains("Busca — Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais Campus Sabará"));
 
-	    System.out.println("Text: " + driver.getCurrentUrl());
-
-	    assertTrue("Erro - Página não retornou valor esperado.", driver.getCurrentUrl()
+	    System.out.println("Text: " + driver.findElement(By.xpath("//strong")).getText());
+	    
+	    assertTrue("Erro - Página não retornou valor esperado.", driver.findElement(By.xpath("//strong"))
+	    															.getText()
 	    															.toLowerCase()
-	    															.startsWith("https://www.ifmg.edu.br/sabara/@@busca?searchabletext=carlos+alberto"));
+	    															.startsWith("carlos alberto"));
 	}
 	
 	//Testes de todos os botões do site do IFMG Sabará
@@ -192,7 +194,7 @@ public class IfmgTest {
 	    															.toLowerCase()
 	    															.startsWith("ifmg campus sabará - página inicial"));
 	}
-	
+
 	@After
 	public void closing() throws Exception{
 		// Espera 0,1 segundos e fecha a janela do browser
